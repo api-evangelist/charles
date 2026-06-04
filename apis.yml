@@ -1,0 +1,107 @@
+---
+aid: charles
+name: Charles University
+description: >-
+  Charles University (Univerzita Karlova), founded in 1348 in Prague, is the
+  largest and oldest university in Czechia and is ranked #246 in the QS World
+  University Rankings 2025. Its public developer/API footprint is limited and
+  primarily academic-infrastructure oriented: institutional DSpace repositories
+  expose standards-based OAI-PMH metadata-harvesting endpoints, and the Institute
+  of Formal and Applied Linguistics (UFAL, Faculty of Mathematics and Physics)
+  operates the LINDAT/CLARIAH-CZ platform which publishes documented public REST
+  web services for natural-language processing. Core student-facing systems such
+  as the Study Information System (SIS) and single sign-on are gated behind
+  eduID.cz / Shibboleth (SAML) authentication and do not publish an open API.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/charles/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - Repository
+  - OAI-PMH
+  - Natural Language Processing
+  - Czechia
+  - Europe
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: charles:digital-repository-oai
+    name: CU Digital Repository OAI-PMH
+    description: >-
+      The Charles University Digital Repository (Digitalni repozitar UK), a
+      DSpace-based institutional repository, exposes a public OAI-PMH 2.0
+      endpoint for metadata harvesting of digitized collections including maps,
+      historical legal texts, and study literature.
+    humanURL: https://dspace.cuni.cz/
+    baseURL: https://dspace.cuni.cz/oai/request
+    tags: [ Repository, OAI-PMH, DSpace, Metadata, Research, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://dspace.cuni.cz/
+      - type: GitHub
+        url: https://github.com/UKUK-Repository-Dept
+  - aid: charles:publications-repository-oai
+    name: CU Research Publications Repository OAI-PMH
+    description: >-
+      The Charles University Research Publications Repository is a DSpace-based
+      institutional archive where staff and students self-archive research
+      outputs. It exposes a public OAI-PMH endpoint for metadata harvesting.
+    humanURL: https://publications.cuni.cz/page/about?locale-attribute=en
+    baseURL: https://publications.cuni.cz/oai/request
+    tags: [ Repository, OAI-PMH, DSpace, Metadata, Research, Publications ]
+    properties:
+      - type: Documentation
+        url: https://publications.cuni.cz/page/about?locale-attribute=en
+      - type: GitHub
+        url: https://github.com/UKUK-Repository-Dept
+  - aid: charles:lindat-translation
+    name: LINDAT Machine Translation API
+    description: >-
+      Public REST API for neural machine translation operated by the Institute
+      of Formal and Applied Linguistics (UFAL) at Charles University as part of
+      the LINDAT/CLARIAH-CZ research infrastructure.
+    humanURL: https://lindat.mff.cuni.cz/services/translation/docs
+    baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
+    tags: [ Natural Language Processing, Machine Translation, REST, Research ]
+    properties:
+      - type: Documentation
+        url: https://lindat.mff.cuni.cz/services/translation/docs
+  - aid: charles:lindat-nametag
+    name: LINDAT NameTag API
+    description: >-
+      Public REST API for named-entity recognition and tokenization (NameTag)
+      operated by the Institute of Formal and Applied Linguistics (UFAL) at
+      Charles University via the LINDAT/CLARIAH-CZ infrastructure.
+    humanURL: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+    baseURL: https://lindat.mff.cuni.cz/services/nametag/api
+    tags: [ Natural Language Processing, Named Entity Recognition, REST, Research ]
+    properties:
+      - type: Documentation
+        url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+common:
+  - type: Website
+    url: https://www.cuni.cz/UKEN-1.html
+  - type: GitHub
+    url: https://github.com/UKUK-Repository-Dept
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/univerzita-karlova/
+  - type: Authentication
+    url: https://uvt.cuni.cz/UVTEN-37.html
+  - type: Plans
+    url: plans/charles-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/charles-rate-limits.yml
+  - type: FinOps
+    url: finops/charles-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

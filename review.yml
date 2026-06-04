@@ -1,0 +1,49 @@
+---
+name: Charles University
+description: Charles University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/charles/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Charles University has no central developer portal or open API program.
+      Confirmed live public interfaces are standards-based academic
+      infrastructure: two DSpace OAI-PMH metadata endpoints (Digital Repository
+      and Research Publications Repository), both returning HTTP 200 with valid
+      OAI-PMH 2.0 Identify responses, and the LINDAT/CLARIAH-CZ NLP web services
+      (Machine Translation REST API and NameTag NER REST API) operated by the
+      UFAL institute, both with public documentation. Student-facing systems
+      (SIS, course catalogue/timetable) and SSO are gated behind eduID.cz /
+      Shibboleth SAML and expose no documented open API. The UKUK-Repository-Dept
+      GitHub org hosts DSpace/Alma integration tooling. No endpoints were
+      fabricated; all base URLs below were probed.
+    endpoints:
+      - url: https://www.cuni.cz/UKEN-1.html
+        status: 200
+        note: Official university website (English).
+      - url: https://dspace.cuni.cz/oai/request?verb=Identify
+        status: 200
+        note: Live OAI-PMH 2.0 endpoint, repository "Digitalni repozitar UK".
+      - url: https://publications.cuni.cz/oai/request?verb=Identify
+        status: 200
+        note: Live OAI-PMH endpoint for the Research Publications Repository.
+      - url: https://lindat.mff.cuni.cz/services/translation/docs
+        status: 200
+        note: Documented public translation REST API (base path api/v2).
+      - url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+        status: 200
+        note: Documented public NameTag NER/tokenization REST API.
+      - url: https://github.com/UKUK-Repository-Dept
+        status: 200
+        note: CU Repositories/Digitization GitHub org with DSpace tooling.
+      - url: https://www.linkedin.com/school/univerzita-karlova/
+        status: 999
+        note: Official LinkedIn school page (999 is LinkedIn anti-bot, page exists).
+      - url: https://uvt.cuni.cz/UVTEN-37.html
+        status: 200
+        note: Shibboleth/eduID.cz SAML SSO docs; auth is gated, not an open API.
+      - url: https://www.is.cuni.cz/studium/eng/login.php
+        status: 0
+        note: SIS student login; gated, no documented public API.
