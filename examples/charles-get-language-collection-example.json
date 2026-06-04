@@ -1,0 +1,40 @@
+{
+  "operationId": "get_language_collection",
+  "summary": "List available source and target languages",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/languages/",
+    "headers": { "accept": "application/json" }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "_links": {
+        "self": { "href": "/api/v2/languages/" },
+        "translate": { "href": "/api/v2/languages{?src,tgt}", "templated": true },
+        "item": [
+          { "href": "/api/v2/languages/cs", "name": "cs", "title": "Czech" }
+        ]
+      },
+      "_embedded": {
+        "item": [
+          {
+            "_links": {
+              "self": { "href": "/api/v2/languages/cs" },
+              "translate": { "href": "/api/v2/languages{?src,tgt}", "templated": true },
+              "sources": [
+                { "href": "/api/v2/languages/en", "name": "en", "title": "English" }
+              ],
+              "targets": [
+                { "href": "/api/v2/languages/en", "name": "en", "title": "English" }
+              ]
+            },
+            "name": "cs",
+            "title": "Czech"
+          }
+        ]
+      }
+    }
+  }
+}

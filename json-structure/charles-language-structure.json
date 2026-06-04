@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/charles/main/json-structure/charles-language-structure.json",
+  "name": "LanguageResource",
+  "description": "JSON Structure for a LINDAT Translation language resource.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "title": { "type": "string" }
+  },
+  "required": ["name"]
+}

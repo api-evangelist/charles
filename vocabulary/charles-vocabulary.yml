@@ -1,0 +1,46 @@
+vocabulary:
+  name: Charles University LINDAT Translation Vocabulary
+  description: >-
+    Controlled vocabulary for the terms and objects exposed by the LINDAT
+    Machine Translation API operated by the Institute of Formal and Applied
+    Linguistics (UFAL) at Charles University, derived from the published
+    Swagger 2.0 specification.
+  version: "2.0"
+  terms:
+    - term: model
+      definition: >-
+        A neural machine translation model identified by a source-target code
+        such as en-cs (English to Czech), backed by systems like CUBBITT.
+      tags: [translation, model]
+    - term: language
+      definition: >-
+        A source or target language participating in translation, identified by
+        a short code (e.g. cs) and a human-readable title (e.g. Czech).
+      tags: [translation, language]
+    - term: supports
+      definition: >-
+        A map on a model resource declaring which target languages each source
+        language can be translated into.
+      tags: [model, capability]
+    - term: src
+      definition: Query parameter naming the source language code for a translation request.
+      tags: [parameter, translation]
+    - term: tgt
+      definition: Query parameter naming the target language code for a translation request.
+      tags: [parameter, translation]
+    - term: input_text
+      definition: >-
+        Form-data field carrying the text to be translated; accepted via
+        application/x-www-form-urlencoded or multipart/form-data file upload.
+      tags: [parameter, request]
+    - term: default
+      definition: Boolean flag indicating the model is the default for its language direction.
+      tags: [model, flag]
+    - term: _links
+      definition: >-
+        HAL-style hypermedia links object providing self, translate, sources,
+        and targets navigation between resources.
+      tags: [hypermedia, hal]
+    - term: _embedded
+      definition: HAL-style container embedding collections of model or language resources.
+      tags: [hypermedia, hal]

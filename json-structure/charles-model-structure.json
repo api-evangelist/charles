@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/charles/main/json-structure/charles-model-structure.json",
+  "name": "ModelResource",
+  "description": "JSON Structure for a LINDAT Translation model resource.",
+  "type": "object",
+  "properties": {
+    "default": { "type": "boolean" },
+    "domain": { "type": "string" },
+    "model": { "type": "string" },
+    "supports": {
+      "type": "map",
+      "values": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "title": { "type": "string" }
+  },
+  "required": ["model", "supports"]
+}

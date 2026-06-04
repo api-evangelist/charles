@@ -1,0 +1,49 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://lindat.mff.cuni.cz/services/translation/docs
+rules:
+  charles-info-title-required:
+    description: API must declare an info title.
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  charles-server-https:
+    description: Servers must use HTTPS as observed on LINDAT.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  charles-operation-id-required:
+    description: Every operation must have an operationId (LINDAT uses snake_case ids like get_model_collection).
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: operationId
+      function: truthy
+  charles-operation-id-snake-case:
+    description: operationIds follow snake_case convention.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+  charles-operation-tagged:
+    description: Operations are grouped under root, languages, or models tags.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  charles-hal-links-property:
+    description: Resource schemas expose HAL-style _links navigation.
+    severity: info
+    given: $.components.schemas[?(@property.match(/Resource$/))].properties
+    then:
+      field: _links
+      function: truthy

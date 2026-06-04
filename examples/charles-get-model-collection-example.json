@@ -1,0 +1,37 @@
+{
+  "operationId": "get_model_collection",
+  "summary": "List available translation models",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/models/",
+    "headers": { "accept": "application/json" }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "_links": {
+        "self": { "href": "/api/v2/models/" },
+        "item": [
+          { "href": "/api/v2/models/en-cs", "name": "en-cs", "title": "en-cs (English->Czech (CUBBITT))" },
+          { "href": "/api/v2/models/cs-en", "name": "cs-en", "title": "cs-en (Czech->English (CUBBITT))" }
+        ]
+      },
+      "_embedded": {
+        "item": [
+          {
+            "_links": {
+              "self": { "href": "/api/v2/models/en-cs" },
+              "translate": { "href": "/api/v2/models/en-cs{?src,tgt}", "templated": true }
+            },
+            "default": true,
+            "domain": "",
+            "model": "en-cs",
+            "supports": { "en": ["cs"] },
+            "title": "en-cs (English->Czech (CUBBITT))"
+          }
+        ]
+      }
+    }
+  }
+}

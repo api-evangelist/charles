@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "charles": "https://api-evangelist.github.io/charles/vocab#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "institution": {
+      "@id": "charles:institution",
+      "@type": "schema:CollegeOrUniversity"
+    },
+    "Model": {
+      "@id": "charles:Model",
+      "@context": {
+        "model": "charles:modelId",
+        "title": "schema:name",
+        "domain": "charles:domain",
+        "default": "charles:isDefault",
+        "supports": "charles:supports",
+        "inLanguage": "schema:inLanguage"
+      }
+    },
+    "Language": {
+      "@id": "charles:Language",
+      "@type": "schema:Language",
+      "@context": {
+        "name": "schema:alternateName",
+        "title": "schema:name"
+      }
+    },
+    "src": "charles:sourceLanguage",
+    "tgt": "charles:targetLanguage",
+    "input_text": "schema:text",
+    "_links": "charles:links",
+    "_embedded": "charles:embedded"
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "Charles University",
+  "url": "https://www.cuni.cz/UKEN-1.html",
+  "description": "Provider context for the LINDAT Machine Translation API operated by UFAL at Charles University."
+}

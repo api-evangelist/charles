@@ -1,0 +1,16 @@
+{
+  "operationId": "post_model_item",
+  "summary": "Translate text with a selected model (en-cs)",
+  "request": {
+    "method": "POST",
+    "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/models/en-cs?src=en&tgt=cs",
+    "headers": { "accept": "application/json" },
+    "contentType": "application/x-www-form-urlencoded",
+    "body": { "input_text": "this is a sample text" }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": ["toto je ukázkový text\n"]
+  }
+}

@@ -73,6 +73,20 @@ apis:
     properties:
       - type: Documentation
         url: https://lindat.mff.cuni.cz/services/translation/docs
+      - type: OpenAPI
+        url: openapi/charles-lindat-translation.yaml
+      - type: x-json-schema
+        url: json-schema/charles-model-schema.json
+      - type: x-json-schema
+        url: json-schema/charles-language-schema.json
+      - type: x-examples
+        url: examples/charles-post-model-item-example.json
+      - type: x-rules
+        url: rules/charles-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/charles-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/charles-context.jsonld
   - aid: charles:lindat-nametag
     name: LINDAT NameTag API
     description: >-

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/charles/main/json-schema/charles-model-schema.json",
+  "title": "ModelResource",
+  "description": "A LINDAT Translation model resource describing a single neural machine translation model and the language directions it supports.",
+  "type": "object",
+  "required": ["model", "supports"],
+  "properties": {
+    "_links": {
+      "type": "object",
+      "properties": {
+        "self": { "$ref": "#/$defs/Link" },
+        "translate": { "$ref": "#/$defs/Link" }
+      }
+    },
+    "default": {
+      "type": "boolean",
+      "description": "Whether this model is the default for its language direction."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Domain name; usually empty."
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier, e.g. en-cs.",
+      "examples": ["en-cs"]
+    },
+    "supports": {
+      "type": "object",
+      "description": "Map of source language code to array of target language codes.",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "examples": [{ "en": ["cs"] }]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable model title.",
+      "examples": ["en-cs (English->Czech (CUBBITT))"]
+    }
+  },
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": { "type": "string" },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string" },
+        "templated": { "type": "boolean" }
+      }
+    }
+  }
+}

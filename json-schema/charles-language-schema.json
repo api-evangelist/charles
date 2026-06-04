@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/charles/main/json-schema/charles-language-schema.json",
+  "title": "LanguageResource",
+  "description": "A LINDAT Translation language resource describing a single language and the source/target directions it participates in.",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "type": "object",
+      "properties": {
+        "self": { "$ref": "#/$defs/Link" },
+        "translate": { "$ref": "#/$defs/Link" },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Link" }
+        },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Link" }
+        }
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Language code.",
+      "examples": ["cs"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable language name.",
+      "examples": ["Czech"]
+    }
+  },
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": { "type": "string" },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "templated": { "type": "boolean" }
+      }
+    }
+  }
+}
