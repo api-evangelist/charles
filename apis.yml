@@ -100,6 +100,10 @@ apis:
       - type: Documentation
         url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
 common:
+  - type: VulnerabilityDisclosure
+    url: security/charles-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/charles-domain-security.yml
   - type: Website
     url: https://www.cuni.cz/UKEN-1.html
   - type: GitHub
