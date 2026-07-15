@@ -100,6 +100,8 @@ apis:
       - type: Documentation
         url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
 common:
+  - type: AgenticAccess
+    url: agentic-access/charles-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/charles-vulnerability-disclosure.yml
   - type: DomainSecurity
