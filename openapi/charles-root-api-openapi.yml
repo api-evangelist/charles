@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: LINDAT Translation languages root API
+  version: '2.0'
+  description: Public REST API for neural machine translation operated by the Institute of Formal and Applied Linguistics (UFAL) at Charles University as part of the LINDAT/CLARIAH-CZ research infrastructure. Converted faithfully from the upstream Swagger 2.0 specification at https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
+servers:
+- url: https://lindat.mff.cuni.cz/services/translation/api/v2
+tags:
+- name: root
+  description: Root resource for navigation to languages/models
+paths:
+  /:
+    get:
+      operationId: get_root_resource
+      tags:
+      - root
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootResource'
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        templated:
+          type: boolean
+        hreflang:
+          type: string
+    RootResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        models:
+          $ref: '#/components/schemas/Link'
+        languages:
+          $ref: '#/components/schemas/Link'

@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: LINDAT Translation languages models API
+  version: '2.0'
+  description: Public REST API for neural machine translation operated by the Institute of Formal and Applied Linguistics (UFAL) at Charles University as part of the LINDAT/CLARIAH-CZ research infrastructure. Converted faithfully from the upstream Swagger 2.0 specification at https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
+servers:
+- url: https://lindat.mff.cuni.cz/services/translation/api/v2
+tags:
+- name: models
+  description: Operations related to translation models
+paths:
+  /models/:
+    get:
+      operationId: get_model_collection
+      summary: Returns a list of available models
+      tags:
+      - models
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelsResource'
+  /models/{model}:
+    parameters:
+    - name: model
+      in: path
+      required: true
+      description: model name
+      schema:
+        type: string
+      example: en-cs
+    get:
+      operationId: get_model_item
+      summary: Get model's details
+      tags:
+      - models
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelResource'
+    post:
+      operationId: post_model_item
+      summary: Send text to be processed by the selected model
+      description: It expects the text in variable called `input_text` and handles both "application/x-www-form-urlencoded" and "multipart/form-data" (for uploading text/plain files). If you don't provide src or tgt some will be chosen for you!
+      tags:
+      - models
+      parameters:
+      - name: src
+        in: query
+        description: src query param description
+        schema:
+          type: string
+        example: en
+      - name: tgt
+        in: query
+        description: tgt query param description
+        schema:
+          type: string
+        example: cs
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                input_text:
+                  type: string
+                  description: text to translate
+                  example: this is a sample text
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                input_text:
+                  type: string
+                  description: text to translate
+                  example: this is a sample text
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+        '415':
+          description: You sent a file but it was not text/plain
+components:
+  schemas:
+    EmbeddedModels:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelResource'
+    ModelsResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/ModelLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedModels'
+    ModelResource:
+      type: object
+      required:
+      - model
+      - supports
+      properties:
+        _links:
+          $ref: '#/components/schemas/ModelResourceLinks'
+        default:
+          type: boolean
+          example: true
+        domain:
+          type: string
+          example: Domain name is usually empty
+        model:
+          type: string
+          example: en-cs
+        supports:
+          type: object
+          example:
+            en:
+            - cs
+        title:
+          type: string
+          example: en-cs (English->Czech (CUBBITT))
+    ModelLinks:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+    ModelResourceLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        translate:
+          $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        name:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        templated:
+          type: boolean
+        hreflang:
+          type: string
