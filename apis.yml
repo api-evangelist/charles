@@ -13,9 +13,21 @@ description: >-
   as the Study Information System (SIS) and single sign-on are gated behind
   eduID.cz / Shibboleth (SAML) authentication and do not publish an open API.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/charles.png
 url: https://raw.githubusercontent.com/api-evangelist/charles/refs/heads/main/apis.yml
 tags:
   - Education
@@ -32,73 +44,133 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: charles:digital-repository-oai
-    name: CU Digital Repository OAI-PMH
-    description: >-
-      The Charles University Digital Repository (Digitalni repozitar UK), a
-      DSpace-based institutional repository, exposes a public OAI-PMH 2.0
-      endpoint for metadata harvesting of digitized collections including maps,
-      historical legal texts, and study literature.
-    humanURL: https://dspace.cuni.cz/
-    baseURL: https://dspace.cuni.cz/oai/request
-    tags: [ Repository, OAI-PMH, DSpace, Metadata, Research, Open Data ]
-    properties:
-      - type: Documentation
-        url: https://dspace.cuni.cz/
-      - type: GitHub
-        url: https://github.com/UKUK-Repository-Dept
-  - aid: charles:publications-repository-oai
-    name: CU Research Publications Repository OAI-PMH
-    description: >-
-      The Charles University Research Publications Repository is a DSpace-based
-      institutional archive where staff and students self-archive research
-      outputs. It exposes a public OAI-PMH endpoint for metadata harvesting.
-    humanURL: https://publications.cuni.cz/page/about?locale-attribute=en
-    baseURL: https://publications.cuni.cz/oai/request
-    tags: [ Repository, OAI-PMH, DSpace, Metadata, Research, Publications ]
-    properties:
-      - type: Documentation
-        url: https://publications.cuni.cz/page/about?locale-attribute=en
-      - type: GitHub
-        url: https://github.com/UKUK-Repository-Dept
-  - aid: charles:lindat-translation
-    name: LINDAT Machine Translation API
-    description: >-
-      Public REST API for neural machine translation operated by the Institute
-      of Formal and Applied Linguistics (UFAL) at Charles University as part of
-      the LINDAT/CLARIAH-CZ research infrastructure.
-    humanURL: https://lindat.mff.cuni.cz/services/translation/docs
-    baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
-    tags: [ Natural Language Processing, Machine Translation, REST, Research ]
-    properties:
-      - type: Documentation
-        url: https://lindat.mff.cuni.cz/services/translation/docs
-      - type: OpenAPI
-        url: openapi/charles-lindat-translation.yaml
-      - type: x-json-schema
-        url: json-schema/charles-model-schema.json
-      - type: x-json-schema
-        url: json-schema/charles-language-schema.json
-      - type: x-examples
-        url: examples/charles-post-model-item-example.json
-      - type: x-rules
-        url: rules/charles-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/charles-vocabulary.yml
-      - type: x-json-ld
-        url: json-ld/charles-context.jsonld
-  - aid: charles:lindat-nametag
-    name: LINDAT NameTag API
-    description: >-
-      Public REST API for named-entity recognition and tokenization (NameTag)
-      operated by the Institute of Formal and Applied Linguistics (UFAL) at
-      Charles University via the LINDAT/CLARIAH-CZ infrastructure.
-    humanURL: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
-    baseURL: https://lindat.mff.cuni.cz/services/nametag/api
-    tags: [ Natural Language Processing, Named Entity Recognition, REST, Research ]
-    properties:
-      - type: Documentation
-        url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+- aid: charles:digital-repository-oai
+  name: CU Digital Repository OAI-PMH
+  description: >-
+    The Charles University Digital Repository (Digitalni repozitar UK), a DSpace-based institutional repository,
+    exposes a public OAI-PMH 2.0 endpoint for metadata harvesting of digitized collections including maps,
+    historical legal texts, and study literature.
+  humanURL: https://dspace.cuni.cz/
+  baseURL: https://dspace.cuni.cz/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - DSpace
+  - Metadata
+  - Research
+  - Open Data
+  properties:
+  - type: Documentation
+    url: https://dspace.cuni.cz/
+  - type: GitHub
+    url: https://github.com/UKUK-Repository-Dept
+- aid: charles:publications-repository-oai
+  name: CU Research Publications Repository OAI-PMH
+  description: >-
+    The Charles University Research Publications Repository is a DSpace-based institutional archive where
+    staff and students self-archive research outputs. It exposes a public OAI-PMH endpoint for metadata
+    harvesting.
+  humanURL: https://publications.cuni.cz/page/about?locale-attribute=en
+  baseURL: https://publications.cuni.cz/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - DSpace
+  - Metadata
+  - Research
+  - Publications
+  properties:
+  - type: Documentation
+    url: https://publications.cuni.cz/page/about?locale-attribute=en
+  - type: GitHub
+    url: https://github.com/UKUK-Repository-Dept
+- aid: charles:lindat-nametag
+  name: LINDAT NameTag API
+  description: >-
+    Public REST API for named-entity recognition and tokenization (NameTag) operated by the Institute
+    of Formal and Applied Linguistics (UFAL) at Charles University via the LINDAT/CLARIAH-CZ infrastructure.
+  humanURL: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+  baseURL: https://lindat.mff.cuni.cz/services/nametag/api
+  tags:
+  - Natural Language Processing
+  - Named Entity Recognition
+  - REST
+  - Research
+  properties:
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+- aid: charles:charles-languages-api
+  name: Charles University languages API
+  description: Operations with source and target languages
+  humanURL: https://dspace.cuni.cz/
+  baseURL: https://dspace.cuni.cz/oai/request
+  tags:
+  - languages
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-languages-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/translation/docs
+  - type: x-json-schema
+    url: json-schema/charles-model-schema.json
+  - type: x-json-schema
+    url: json-schema/charles-language-schema.json
+  - type: x-examples
+    url: examples/charles-post-model-item-example.json
+  - type: x-rules
+    url: rules/charles-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/charles-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/charles-context.jsonld
+- aid: charles:charles-models-api
+  name: Charles University models API
+  description: Operations related to translation models
+  humanURL: https://dspace.cuni.cz/
+  baseURL: https://dspace.cuni.cz/oai/request
+  tags:
+  - models
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-models-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/translation/docs
+  - type: x-json-schema
+    url: json-schema/charles-model-schema.json
+  - type: x-json-schema
+    url: json-schema/charles-language-schema.json
+  - type: x-examples
+    url: examples/charles-post-model-item-example.json
+  - type: x-rules
+    url: rules/charles-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/charles-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/charles-context.jsonld
+- aid: charles:charles-root-api
+  name: Charles University root API
+  description: Root resource for navigation to languages/models
+  humanURL: https://dspace.cuni.cz/
+  baseURL: https://dspace.cuni.cz/oai/request
+  tags:
+  - root
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-root-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/translation/docs
+  - type: x-json-schema
+    url: json-schema/charles-model-schema.json
+  - type: x-json-schema
+    url: json-schema/charles-language-schema.json
+  - type: x-examples
+    url: examples/charles-post-model-item-example.json
+  - type: x-rules
+    url: rules/charles-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/charles-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/charles-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/charles-agentic-access.yml
