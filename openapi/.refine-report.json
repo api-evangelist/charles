@@ -1,0 +1,18 @@
+{
+  "provider": "charles",
+  "sources": [
+    "charles-languages-api-openapi.yml",
+    "charles-models-api-openapi.yml",
+    "charles-root-api-openapi.yml"
+  ],
+  "outputs": [
+    "charles-languages-api-openapi.yml",
+    "charles-models-api-openapi.yml",
+    "charles-root-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
