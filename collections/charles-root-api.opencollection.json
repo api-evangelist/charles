@@ -1,0 +1,28 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LINDAT Translation languages root API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "root",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_root_resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

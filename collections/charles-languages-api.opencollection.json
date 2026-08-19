@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LINDAT Translation languages API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "languages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of available languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/languages/"
+          },
+          "docs": "Returns a list of available languages"
+        },
+        {
+          "info": {
+            "name": "Translate input from src lang to tgt lang",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/languages/",
+            "params": [
+              {
+                "name": "src",
+                "value": "en",
+                "type": "query",
+                "description": "src query param description"
+              },
+              {
+                "name": "tgt",
+                "value": "cs",
+                "type": "query",
+                "description": "tgt query param description"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "input_text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "It expects the text in variable called `input_text` and handles both \"application/x-www-form-urlencoded\" and \"multipart/form-data\" (for uploading text/plain files)"
+        },
+        {
+          "info": {
+            "name": "Returns a language resource object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/languages/:language",
+            "params": [
+              {
+                "name": "language",
+                "value": "en",
+                "type": "path",
+                "description": "Language code"
+              }
+            ]
+          },
+          "docs": "Returns a language resource object"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,99 @@
+{
+  "item": [
+    {
+      "id": "33cd079a-080d-4cec-b549-f402742f630a",
+      "name": "root",
+      "description": {
+        "content": "Root resource for navigation to languages/models",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a157ca7-1d3f-4044-aa3d-0759759b2806",
+          "name": "get root resource",
+          "request": {
+            "name": "get root resource",
+            "description": {},
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffd54ff1-78d8-472d-bb76-b2d533cadd93",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"templated\": true,\n      \"hreflang\": \"string\"\n    },\n    \"models\": {\n      \"href\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"templated\": false,\n      \"hreflang\": \"string\"\n    },\n    \"languages\": {\n      \"href\": \"string\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"templated\": false,\n      \"hreflang\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lindat.mff.cuni.cz/services/translation/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1938f020-0665-4b60-b0ff-dcf054cfd232",
+    "name": "LINDAT Translation languages root API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for neural machine translation operated by the Institute of Formal and Applied Linguistics (UFAL) at Charles University as part of the LINDAT/CLARIAH-CZ research infrastructure. Converted faithfully from the upstream Swagger 2.0 specification at https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json",
+      "type": "text/plain"
+    }
+  }
+}
