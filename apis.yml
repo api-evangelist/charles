@@ -105,6 +105,8 @@ apis:
   humanURL: https://dspace.cuni.cz/
   baseURL: https://dspace.cuni.cz/oai/request
   tags:
+  - Language
+  tags_raw:
   - languages
   properties:
   - type: OpenAPI
@@ -129,6 +131,8 @@ apis:
   humanURL: https://dspace.cuni.cz/
   baseURL: https://dspace.cuni.cz/oai/request
   tags:
+  - Models
+  tags_raw:
   - models
   properties:
   - type: OpenAPI
@@ -153,6 +157,8 @@ apis:
   humanURL: https://dspace.cuni.cz/
   baseURL: https://dspace.cuni.cz/oai/request
   tags:
+  - Root
+  tags_raw:
   - root
   properties:
   - type: OpenAPI
