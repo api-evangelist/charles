@@ -117,7 +117,7 @@ apis:
   humanURL: https://dspace.cuni.cz/
   baseURL: https://dspace.cuni.cz/oai/request
   tags:
-  - languages
+  - Language
   tags_raw:
   - languages
   properties:
