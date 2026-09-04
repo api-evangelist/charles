@@ -1,17 +1,25 @@
 ---
 aid: charles
 name: Charles University
+x-type: university
+x-category: Public Research University
 description: >-
-  Charles University (Univerzita Karlova), founded in 1348 in Prague, is the
-  largest and oldest university in Czechia and is ranked #246 in the QS World
-  University Rankings 2025. Its public developer/API footprint is limited and
-  primarily academic-infrastructure oriented: institutional DSpace repositories
-  expose standards-based OAI-PMH metadata-harvesting endpoints, and the Institute
-  of Formal and Applied Linguistics (UFAL, Faculty of Mathematics and Physics)
-  operates the LINDAT/CLARIAH-CZ platform which publishes documented public REST
-  web services for natural-language processing. Core student-facing systems such
-  as the Study Information System (SIS) and single sign-on are gated behind
-  eduID.cz / Shibboleth (SAML) authentication and do not publish an open API.
+  Charles University (Univerzita Karlova), founded in 1348 in Prague, is the largest and oldest
+  university in Czechia. Unusually for a university, a substantial part of its programmable
+  footprint is genuinely institution-operated rather than a vendor contract running under its name.
+  The Institute of Formal and Applied Linguistics (UFAL) in the Faculty of Mathematics and Physics
+  runs the LINDAT/CLARIAH-CZ research infrastructure and publishes five documented, keyless,
+  production REST APIs on its own host — machine translation, UDPipe (tokenization, tagging,
+  lemmatization and dependency parsing across 961 Universal Dependencies models), NameTag
+  (named-entity recognition), MorphoDiTa (morphological analysis and generation) and Korektor
+  (Czech spellchecking and diacritics). Three DSpace repositories on university-owned infrastructure
+  expose OAI-PMH 2.0, and the LINDAT repository additionally exposes a DSpace 7 HAL REST API. The
+  university operates its own Shibboleth SAML identity provider at idp.cuni.cz, registered in the
+  Czech national federation eduID.cz, and is a DataCite registrant (CUNI) and Crossref member.
+  What it does NOT have is a central developer portal, an open-data portal, or any public API over
+  the Study Information System (SIS) or student records — those are gated behind eduID/Shibboleth.
+  Library discovery (UKAZ) is an Ex Libris Primo tenancy and cuni.figshare.com is a Figshare
+  tenancy; both are real institutional relationships whose contracts belong to the vendors.
 type: Index
 deliveryModel:
   model: saas
@@ -27,97 +35,51 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free · no key required
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
-position: Consumer
+  - probed
+  generated: '2026-09-01'
+  method: probed
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/charles.png
 url: https://raw.githubusercontent.com/api-evangelist/charles/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
   - Research
-  - Open Data
-  - Repository
-  - OAI-PMH
-  - Natural Language Processing
   - Czechia
   - Europe
+  - Language Technology
+  - Natural Language Processing
+  - Machine Translation
+  - Research Repository
+  - Identity Federation
+  - OAI-PMH
+  - CLARIN
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
-- aid: charles:digital-repository-oai
-  name: CU Digital Repository OAI-PMH
-  description: >-
-    The Charles University Digital Repository (Digitalni repozitar UK), a DSpace-based institutional repository,
-    exposes a public OAI-PMH 2.0 endpoint for metadata harvesting of digitized collections including maps,
-    historical legal texts, and study literature.
-  humanURL: https://dspace.cuni.cz/
-  baseURL: https://dspace.cuni.cz/oai/request
-  tags:
-  - Repository
-  - OAI-PMH
-  - DSpace
-  - Metadata
-  - Research
-  - Open Data
-  properties:
-  - type: Documentation
-    url: https://dspace.cuni.cz/
-  - type: GitHub
-    url: https://github.com/UKUK-Repository-Dept
-- aid: charles:publications-repository-oai
-  name: CU Research Publications Repository OAI-PMH
-  description: >-
-    The Charles University Research Publications Repository is a DSpace-based institutional archive where
-    staff and students self-archive research outputs. It exposes a public OAI-PMH endpoint for metadata
-    harvesting.
-  humanURL: https://publications.cuni.cz/page/about?locale-attribute=en
-  baseURL: https://publications.cuni.cz/oai/request
-  tags:
-  - Repository
-  - OAI-PMH
-  - DSpace
-  - Metadata
-  - Research
-  - Publications
-  properties:
-  - type: Documentation
-    url: https://publications.cuni.cz/page/about?locale-attribute=en
-  - type: GitHub
-    url: https://github.com/UKUK-Repository-Dept
-- aid: charles:lindat-nametag
-  name: LINDAT NameTag API
-  description: >-
-    Public REST API for named-entity recognition and tokenization (NameTag) operated by the Institute
-    of Formal and Applied Linguistics (UFAL) at Charles University via the LINDAT/CLARIAH-CZ infrastructure.
-  humanURL: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
-  baseURL: https://lindat.mff.cuni.cz/services/nametag/api
-  tags:
-  - Natural Language Processing
-  - Named Entity Recognition
-  - REST
-  - Research
-  properties:
-  - type: Documentation
-    url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
 - aid: charles:charles-languages-api
-  name: Charles University languages API
-  description: Operations with source and target languages
-  humanURL: https://dspace.cuni.cz/
-  baseURL: https://dspace.cuni.cz/oai/request
+  name: LINDAT Translation Languages API
+  x-operator: institution
+  description: >-
+    Source and target language operations of the LINDAT Machine Translation API, operated by the
+    Institute of Formal and Applied Linguistics (UFAL) at Charles University. Translation is
+    performed by posting text to a language pair. Refined by API Evangelist from the upstream
+    Swagger 2.0 specification published by the service itself.
+  humanURL: https://lindat.mff.cuni.cz/services/translation/docs
+  baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Language
+  - Machine Translation
   tags_raw:
   - languages
   properties:
@@ -130,7 +92,7 @@ apis:
   - type: x-json-schema
     url: json-schema/charles-language-schema.json
   - type: x-examples
-    url: examples/charles-post-model-item-example.json
+    url: examples/charles-get-language-collection-example.json
   - type: x-rules
     url: rules/charles-rules.yml
   - type: x-vocabulary
@@ -138,12 +100,16 @@ apis:
   - type: x-json-ld
     url: json-ld/charles-context.jsonld
 - aid: charles:charles-models-api
-  name: Charles University models API
-  description: Operations related to translation models
-  humanURL: https://dspace.cuni.cz/
-  baseURL: https://dspace.cuni.cz/oai/request
+  name: LINDAT Translation Models API
+  x-operator: institution
+  description: >-
+    Translation-model operations of the LINDAT Machine Translation API, operated by UFAL at Charles
+    University. Models are neural MT systems such as CUBBITT, addressed by source-target code.
+  humanURL: https://lindat.mff.cuni.cz/services/translation/docs
+  baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Models
+  - Machine Translation
   tags_raw:
   - models
   properties:
@@ -153,8 +119,8 @@ apis:
     url: https://lindat.mff.cuni.cz/services/translation/docs
   - type: x-json-schema
     url: json-schema/charles-model-schema.json
-  - type: x-json-schema
-    url: json-schema/charles-language-schema.json
+  - type: x-examples
+    url: examples/charles-get-model-collection-example.json
   - type: x-examples
     url: examples/charles-post-model-item-example.json
   - type: x-rules
@@ -164,12 +130,16 @@ apis:
   - type: x-json-ld
     url: json-ld/charles-context.jsonld
 - aid: charles:charles-root-api
-  name: Charles University root API
-  description: Root resource for navigation to languages/models
-  humanURL: https://dspace.cuni.cz/
-  baseURL: https://dspace.cuni.cz/oai/request
+  name: LINDAT Translation Root API
+  x-operator: institution
+  description: >-
+    Root navigation resource of the LINDAT Machine Translation API, returning HAL links to the
+    languages and models collections.
+  humanURL: https://lindat.mff.cuni.cz/services/translation/docs
+  baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Root
+  - Machine Translation
   tags_raw:
   - root
   properties:
@@ -177,33 +147,364 @@ apis:
     url: openapi/charles-root-api-openapi.yml
   - type: Documentation
     url: https://lindat.mff.cuni.cz/services/translation/docs
-  - type: x-json-schema
-    url: json-schema/charles-model-schema.json
-  - type: x-json-schema
-    url: json-schema/charles-language-schema.json
-  - type: x-examples
-    url: examples/charles-post-model-item-example.json
   - type: x-rules
     url: rules/charles-rules.yml
   - type: x-vocabulary
     url: vocabulary/charles-vocabulary.yml
   - type: x-json-ld
     url: json-ld/charles-context.jsonld
+- aid: charles:lindat-udpipe
+  name: LINDAT UDPipe API
+  x-operator: institution
+  description: >-
+    Public keyless REST API for tokenization, part-of-speech tagging, lemmatization and dependency
+    parsing of CoNLL-U data, operated by UFAL at Charles University. The live service advertised 961
+    Universal Dependencies models when probed on 2026-09-01. The OpenAPI here is derived by API
+    Evangelist from the service's own published REST API reference and verified against live
+    responses; UFAL publishes documentation, not a machine-readable contract.
+  humanURL: https://lindat.mff.cuni.cz/services/udpipe/api-reference.php
+  baseURL: https://lindat.mff.cuni.cz/services/udpipe/api
+  tags:
+  - Natural Language Processing
+  - Universal Dependencies
+  - Parsing
+  - Research
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-udpipe-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/udpipe/api-reference.php
+  - type: x-examples
+    url: examples/charles-udpipe-process-example.json
+  - type: TermsOfService
+    url: https://lindat.mff.cuni.cz/en/terms-of-use
+- aid: charles:lindat-nametag
+  name: LINDAT NameTag API
+  x-operator: institution
+  description: >-
+    Public keyless REST API for named-entity recognition and tokenization (NameTag 3) operated by
+    UFAL at Charles University via LINDAT/CLARIAH-CZ. The OpenAPI here is derived by API Evangelist
+    from the service's own published REST API reference and verified against live responses.
+  humanURL: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+  baseURL: https://lindat.mff.cuni.cz/services/nametag/api
+  tags:
+  - Natural Language Processing
+  - Named Entity Recognition
+  - Research
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-nametag-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+  - type: x-examples
+    url: examples/charles-nametag-recognize-example.json
+  - type: x-examples
+    url: examples/charles-nametag-models-example.json
+  - type: TermsOfService
+    url: https://lindat.mff.cuni.cz/en/terms-of-use
+- aid: charles:lindat-morphodita
+  name: LINDAT MorphoDiTa API
+  x-operator: institution
+  description: >-
+    Public keyless REST API for morphological analysis, morphological generation, part-of-speech
+    tagging and tokenization, principally for Czech, operated by UFAL at Charles University. The
+    OpenAPI here is derived by API Evangelist from the service's published REST API reference and
+    verified against live responses.
+  humanURL: https://lindat.mff.cuni.cz/services/morphodita/api-reference.php
+  baseURL: https://lindat.mff.cuni.cz/services/morphodita/api
+  tags:
+  - Natural Language Processing
+  - Morphology
+  - Research
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-morphodita-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/morphodita/api-reference.php
+  - type: x-examples
+    url: examples/charles-morphodita-tag-example.json
+  - type: TermsOfService
+    url: https://lindat.mff.cuni.cz/en/terms-of-use
+- aid: charles:lindat-korektor
+  name: LINDAT Korektor API
+  x-operator: institution
+  description: >-
+    Public keyless REST API for Czech statistical spellchecking, diacritics generation and ranked
+    correction suggestions, operated by UFAL at Charles University. The OpenAPI here is derived by
+    API Evangelist from the service's published REST API reference and verified against live
+    responses.
+  humanURL: https://lindat.mff.cuni.cz/services/korektor/api-reference.php
+  baseURL: https://lindat.mff.cuni.cz/services/korektor/api
+  tags:
+  - Natural Language Processing
+  - Spellchecking
+  - Research
+  properties:
+  - type: OpenAPI
+    url: openapi/charles-korektor-api-openapi.yml
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/services/korektor/api-reference.php
+  - type: x-examples
+    url: examples/charles-korektor-suggestions-example.json
+  - type: TermsOfService
+    url: https://lindat.mff.cuni.cz/en/terms-of-use
+- aid: charles:digital-repository-oai
+  name: CU Digital Repository OAI-PMH
+  x-operator: institution
+  description: >-
+    The Charles University Digital Repository (Digitalni repozitar UK), a DSpace instance running on
+    university-owned infrastructure (dspace.cuni.cz resolves to dspace-in-1.is.cuni.cz), exposes a
+    public OAI-PMH 2.0 endpoint for metadata harvesting of digitized collections. The Identify
+    response names the repository and gives adminEmail admin-repozitar@cuni.cz. The DSpace software
+    is a vendor's; the deployment, the host and the metadata are the university's, and OAI-PMH is an
+    open standard rather than a vendor contract, so no vendor spec is saved here.
+  humanURL: https://dspace.cuni.cz/
+  baseURL: https://dspace.cuni.cz/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - DSpace
+  - Metadata
+  - Research
+  properties:
+  - type: Documentation
+    url: https://dspace.cuni.cz/
+  - type: GitHub
+    url: https://github.com/UKUK-Repository-Dept
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:publications-repository-oai
+  name: CU Research Publications Repository OAI-PMH
+  x-operator: institution
+  description: >-
+    The Charles University Research Publications Repository (Repozitar publikacni cinnosti UK), a
+    DSpace instance on university-owned infrastructure, exposes a public OAI-PMH 2.0 endpoint for
+    metadata harvesting of self-archived research outputs. Verified Identify response with
+    earliestDatestamp 2022-11-02.
+  humanURL: https://publications.cuni.cz/page/about?locale-attribute=en
+  baseURL: https://publications.cuni.cz/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - DSpace
+  - Metadata
+  - Publications
+  properties:
+  - type: Documentation
+    url: https://publications.cuni.cz/page/about?locale-attribute=en
+  - type: GitHub
+    url: https://github.com/UKUK-Repository-Dept
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:lindat-repository-oai
+  name: LINDAT/CLARIAH-CZ Repository OAI-PMH
+  x-operator: institution
+  description: >-
+    OAI-PMH 2.0 endpoint of the LINDAT/CLARIAH-CZ digital library operated by UFAL at Charles
+    University, holding language resources and tools back to 2006. The Identify response also
+    carries an olac-archive description, so the endpoint doubles as an OLAC 1.1 archive.
+  humanURL: https://lindat.mff.cuni.cz/repository/xmlui/
+  baseURL: https://lindat.mff.cuni.cz/repository/server/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - OLAC
+  - Language Resources
+  - Research
+  properties:
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/repository/xmlui/
+  - type: GitHub
+    url: https://github.com/ufal
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:lindat-repository-rest
+  name: LINDAT/CLARIAH-CZ Repository REST API
+  x-operator: institution
+  description: >-
+    DSpace 7 HAL+JSON REST API of the LINDAT/CLARIAH-CZ digital library, served from UFAL's own host
+    at Charles University. The root discovery document returns 200 application/hal+json; item
+    collections require authentication (probed 401). The contract is DSpace's, so none is saved
+    here — the deployment, the host and the holdings are the institution's.
+  humanURL: https://lindat.mff.cuni.cz/repository/xmlui/
+  baseURL: https://lindat.mff.cuni.cz/repository/server/api
+  tags:
+  - Repository
+  - REST
+  - HAL
+  - DSpace
+  - Research
+  properties:
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/repository/xmlui/
+  - type: GitHub
+    url: https://github.com/ufal
+- aid: charles:identity-provider
+  name: Charles University Shibboleth Identity Provider
+  x-operator: federation
+  description: >-
+    Charles University operates its own Shibboleth SAML 2.0 identity provider. Metadata is served at
+    idp.cuni.cz as application/xml with entityID https://cas.cuni.cz/idp/shibboleth, shibmd:Scope
+    cuni.cz, and mdui:DisplayName "Charles University" / "Univerzita Karlova". The IdP is registered
+    in eduID.cz, the Czech national identity federation operated by CESNET, and reachable through
+    eduGAIN. A federation is shared by definition; the IdP behind it is the institution's own and is
+    one of its strongest machine-readable, institution-operated surfaces.
+  humanURL: https://uvt.cuni.cz/UVTEN-37.html
+  baseURL: https://idp.cuni.cz/idp/shibboleth
+  tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - eduGAIN
+  - Authentication
+  properties:
+  - type: Documentation
+    url: https://uvt.cuni.cz/UVTEN-37.html
+  - type: Metadata
+    url: https://idp.cuni.cz/idp/shibboleth
+  - type: Federation
+    url: https://www.eduid.cz/en/idp
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:datacite-membership
+  name: DataCite Registrant — Charles University (CUNI)
+  x-operator: registry
+  description: >-
+    Charles University is a DataCite registrant under provider symbol CUNI, memberType
+    consortium_organization, country CZ, linked to ROR https://ror.org/024d6js02. This is a
+    membership record — a fact about the institution — not a contract it operates. The DataCite API
+    is DataCite's own and is deliberately not saved here.
+  humanURL: https://api.datacite.org/providers/cuni
+  baseURL: https://api.datacite.org/providers/cuni
+  tags:
+  - DOI
+  - DataCite
+  - Registry
+  - Persistent Identifiers
+  properties:
+  - type: Documentation
+    url: https://api.datacite.org/providers/cuni
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:crossref-membership
+  name: Crossref Membership — Charles University
+  x-operator: registry
+  description: >-
+    Charles University holds two Crossref memberships: 5727, "Charles University in Prague,
+    Karolinum Press" (the university press), and 55007, the Institute of Communication Studies and
+    Journalism in the Faculty of Social Sciences. Recorded as a registry membership; the Crossref
+    API contract is Crossref's.
+  humanURL: https://www.crossref.org/
+  baseURL: https://api.crossref.org/members/5727
+  tags:
+  - DOI
+  - Crossref
+  - Registry
+  - Persistent Identifiers
+  properties:
+  - type: Documentation
+    url: https://api.crossref.org/members/5727
+  - type: x-alternate
+    url: https://api.crossref.org/members/55007
+  - type: x-conformance
+    url: conformance/charles-education-standards-conformance.yml
+- aid: charles:ror-registration
+  name: ROR Registration — Charles University
+  x-operator: registry
+  description: >-
+    Charles University is registered in the Research Organization Registry as
+    https://ror.org/024d6js02, located in Czechia. Recorded as a registry membership; the ROR API is
+    ROR's own.
+  humanURL: https://ror.org/024d6js02
+  baseURL: https://api.ror.org/v2/organizations/024d6js02
+  tags:
+  - Registry
+  - ROR
+  - Persistent Identifiers
+  properties:
+  - type: Documentation
+    url: https://ror.org/024d6js02
+- aid: charles:library-discovery-primo
+  name: UKAZ Library Discovery — Ex Libris Primo VE tenancy
+  x-operator: tenant
+  description: >-
+    UKAZ, the Charles University library discovery service, is an Ex Libris Primo VE tenancy.
+    ukaz.cuni.cz redirects to cuni.primo.exlibrisgroup.com with institution view id
+    420CKIS_INST:UKAZ. The tenancy and the catalogue are the university's; the Primo and Alma API
+    contracts belong to Ex Libris and are deliberately not saved under this institution.
+  humanURL: https://ukaz.cuni.cz/
+  baseURL: https://cuni.primo.exlibrisgroup.com/discovery/search?vid=420CKIS_INST:UKAZ
+  tags:
+  - Library
+  - Discovery
+  - Primo
+  - Ex Libris
+  - Tenant
+  properties:
+  - type: Documentation
+    url: https://knihovna.cuni.cz/
+  - type: x-vendor
+    url: https://developers.exlibrisgroup.com/
+- aid: charles:figshare-repository
+  name: Charles University Figshare — Figshare tenancy
+  x-operator: tenant
+  description: >-
+    cuni.figshare.com is a Figshare tenancy for Charles University; DNS resolves it by CNAME to
+    figshare.com. The host answered an AWS WAF bot challenge (HTTP 202, empty body) on 2026-09-01,
+    so the tenancy is evidenced from DNS rather than from content. The relationship is real and the
+    data is the university's; the Figshare API contract is Figshare's and is deliberately not saved
+    under this institution. This is the exact misattribution the university pipeline exists to
+    prevent — one Figshare contract was previously credited to 25 institutions.
+  humanURL: https://cuni.figshare.com/
+  baseURL: https://cuni.figshare.com/
+  tags:
+  - Research Repository
+  - Figshare
+  - Tenant
+  properties:
+  - type: x-vendor
+    url: https://docs.figshare.com/
 common:
-  - type: AgenticAccess
-    url: agentic-access/charles-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/charles-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/charles-domain-security.yml
   - type: Website
     url: https://www.cuni.cz/UKEN-1.html
+  - type: Documentation
+    url: https://lindat.mff.cuni.cz/en/services
+  - type: APIReference
+    url: https://lindat.mff.cuni.cz/services/udpipe/api-reference.php
+  - type: ResearchRepository
+    url: https://lindat.mff.cuni.cz/repository/xmlui/
+  - type: LibraryCatalog
+    url: https://ukaz.cuni.cz/
+  - type: CourseCatalog
+    url: https://is.cuni.cz/studium/eng/index.php
+  - type: IdentityFederation
+    url: https://idp.cuni.cz/idp/shibboleth
+  - type: AIPolicy
+    url: https://ai.cuni.cz/AI-36.html
+  - type: AITooling
+    url: https://ai.cuni.cz/AI-9.html
+  - type: TermsOfService
+    url: https://lindat.mff.cuni.cz/en/terms-of-use
+  - type: Support
+    url: https://lindat.mff.cuni.cz/user_feedback
   - type: GitHub
+    url: https://github.com/ufal
+  - type: GitHubOrganization
     url: https://github.com/UKUK-Repository-Dept
   - type: LinkedIn
     url: https://www.linkedin.com/school/univerzita-karlova/
   - type: Authentication
     url: https://uvt.cuni.cz/UVTEN-37.html
+  - type: SecurityTxt
+    url: https://www.cuni.cz/.well-known/security.txt
+  - type: VulnerabilityDisclosure
+    url: security/charles-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/charles-domain-security.yml
+  - type: AgenticAccess
+    url: agentic-access/charles-agentic-access.yml
+  - type: Conformance
+    url: conformance/charles-education-standards-conformance.yml
   - type: Plans
     url: plans/charles-plans-pricing.yml
   - type: RateLimits
@@ -212,6 +513,76 @@ common:
     url: finops/charles-finops.yml
   - type: Review
     url: review.yml
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Charles University is one of the rare universities with a substantial institution-operated
+    programmable footprint, and this profile is a correction of a June 2026 one that both understated
+    it and misbased it. Five keyless production REST APIs run on lindat.mff.cuni.cz under UFAL in the
+    Faculty of Mathematics and Physics (translation, UDPipe, NameTag, MorphoDiTa, Korektor); all five
+    were probed live and returned 200 with real payloads. Three OAI-PMH 2.0 endpoints on
+    university-owned hosts answered verb=Identify. The university's own Shibboleth SAML IdP serves
+    metadata at idp.cuni.cz. DataCite (CUNI) and Crossref (5727, 55007) memberships were confirmed
+    against the registries. UFAL publishes documentation rather than machine-readable contracts for
+    four of the five services, so those OpenAPIs are derived and marked as such; only the translation
+    API ships its own Swagger 2.0. What is genuinely absent: no central developer portal, no
+    open-data portal (data.cuni.cz and opendata.cuni.cz do not resolve), no api.cuni.cz, and no
+    public API over the Study Information System — student-facing systems are gated behind
+    eduID/Shibboleth. Library discovery is an Ex Libris Primo tenancy and cuni.figshare.com is a
+    Figshare tenancy; both relationships are recorded and neither vendor contract is saved here.
+    The institution's AI posture is published only in Czech at ai.cuni.cz. Note for pointer
+    liveness: the four UFAL service base URLs (.../udpipe/api, /nametag/api, /morphodita/api,
+    /korektor/api) return 404 on a bare GET because those services expose no root resource;
+    every operation beneath them (/models, /process, /recognize, /tag, /correct) returned 200
+    when probed. They are kept because they are the servers[] base the contracts declare.
+    The LinkedIn page returns 999 (anti-bot) and cuni.figshare.com returns 202 (AWS WAF
+    challenge); both are live, not dead.
+  evidence:
+    - url: https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
+      status: 200
+    - url: https://lindat.mff.cuni.cz/services/udpipe/api/models
+      status: 200
+    - url: https://lindat.mff.cuni.cz/services/nametag/api/models
+      status: 200
+    - url: https://lindat.mff.cuni.cz/services/morphodita/api/models
+      status: 200
+    - url: https://lindat.mff.cuni.cz/services/korektor/api/models
+      status: 200
+    - url: https://dspace.cuni.cz/oai/request?verb=Identify
+      status: 200
+    - url: https://publications.cuni.cz/oai/request?verb=Identify
+      status: 200
+    - url: https://lindat.mff.cuni.cz/repository/server/oai/request?verb=Identify
+      status: 200
+    - url: https://lindat.mff.cuni.cz/repository/server/api
+      status: 200
+    - url: https://lindat.mff.cuni.cz/repository/server/api/core/items?size=1
+      status: 401
+    - url: https://idp.cuni.cz/idp/shibboleth
+      status: 200
+    - url: https://api.datacite.org/providers/cuni
+      status: 200
+    - url: https://api.crossref.org/members/5727
+      status: 200
+    - url: https://ror.org/024d6js02
+      status: 200
+    - url: https://cuni.primo.exlibrisgroup.com/discovery/search?vid=420CKIS_INST:UKAZ
+      status: 200
+    - url: https://cuni.figshare.com/
+      status: 202
+    - url: https://ai.cuni.cz/AI-36.html
+      status: 200
+    - url: https://www.cuni.cz/.well-known/security.txt
+      status: 200
+    - url: https://data.cuni.cz/
+      status: 0
+    - url: https://api.cuni.cz/
+      status: 0
+    - url: https://www.cuni.cz/llms.txt
+      status: 404
+  generated: '2026-09-01'
+  method: probed
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
