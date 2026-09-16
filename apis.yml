@@ -79,7 +79,6 @@ apis:
   baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Language
-  - Machine Translation
   tags_raw:
   - languages
   properties:
@@ -109,7 +108,6 @@ apis:
   baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Models
-  - Machine Translation
   tags_raw:
   - models
   properties:
@@ -139,7 +137,6 @@ apis:
   baseURL: https://lindat.mff.cuni.cz/services/translation/api/v2
   tags:
   - Root
-  - Machine Translation
   tags_raw:
   - root
   properties:
