@@ -436,6 +436,12 @@ apis:
   - Discovery
   - Primo
   - Ex Libris
+  - Tenants
+  tags_raw:
+  - Library
+  - Discovery
+  - Primo
+  - Ex Libris
   - Tenant
   properties:
   - type: Documentation
@@ -455,6 +461,10 @@ apis:
   humanURL: https://cuni.figshare.com/
   baseURL: https://cuni.figshare.com/
   tags:
+  - Research Repository
+  - Figshare
+  - Tenants
+  tags_raw:
   - Research Repository
   - Figshare
   - Tenant
