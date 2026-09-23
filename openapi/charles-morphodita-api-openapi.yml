@@ -1,0 +1,249 @@
+openapi: 3.2.0
+info:
+  title: LINDAT Morphodita API
+  version: '1'
+  summary: Morphological analysis, generation, tagging and tokenization operated by ÚFAL at Charles University.
+  description: Public REST API for MorphoDiTa (Morphological Dictionary and Tagger) operated by the Institute of Formal and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles University, and delivered through the LINDAT/CLARIAH-CZ research infrastructure.
+  contact:
+    name: LINDAT/CLARIAH-CZ Helpdesk
+    email: lindat-help@ufal.mff.cuni.cz
+    url: https://lindat.mff.cuni.cz/user_feedback
+  license:
+    name: CC BY-NC-SA
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  termsOfService: https://lindat.mff.cuni.cz/en/terms-of-use
+servers:
+- url: https://lindat.mff.cuni.cz/services/morphodita/api
+  description: Production service operated by ÚFAL, Charles University
+tags:
+- name: morphodita
+  description: Morphological analysis, generation, tagging and tokenization operations
+paths:
+  /models:
+    get:
+      operationId: listMorphoDiTaModels
+      summary: List available MorphoDiTa models
+      tags:
+      - morphodita
+      responses:
+        '200':
+          description: Model inventory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+  /tag:
+    get:
+      operationId: tagText
+      summary: Part-of-speech tag and lemmatize the supplied text
+      tags:
+      - morphodita
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - $ref: '#/components/parameters/Guesser'
+      - $ref: '#/components/parameters/Input'
+      - $ref: '#/components/parameters/ConvertTagset'
+      - $ref: '#/components/parameters/Derivation'
+      - name: output
+        in: query
+        required: false
+        description: Output format. `json` returns an array of sentences of token objects carrying `token`, `lemma`, `tag` and optionally `space`.
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - vertical
+          default: xml
+      responses:
+        '200':
+          description: Tagging result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+  /analyze:
+    get:
+      operationId: analyzeText
+      summary: Perform morphological analysis of the supplied text
+      tags:
+      - morphodita
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - $ref: '#/components/parameters/Guesser'
+      - $ref: '#/components/parameters/Input'
+      - $ref: '#/components/parameters/ConvertTagset'
+      - $ref: '#/components/parameters/Derivation'
+      - name: output
+        in: query
+        required: false
+        description: Output format. `json` returns token objects each carrying an `analyses` array of `lemma`/`tag` pairs.
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - vertical
+          default: xml
+      responses:
+        '200':
+          description: Analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+  /generate:
+    get:
+      operationId: generateForms
+      summary: Perform morphological generation from supplied lemmas
+      tags:
+      - morphodita
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - $ref: '#/components/parameters/Guesser'
+      - $ref: '#/components/parameters/ConvertTagset'
+      - name: output
+        in: query
+        required: false
+        description: Output format. `json` returns an array of lemma results, each an array of objects carrying `form`, `lemma` and `tag`.
+        schema:
+          type: string
+          enum:
+          - json
+          - vertical
+          default: vertical
+      responses:
+        '200':
+          description: Generation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+  /tokenize:
+    get:
+      operationId: tokenizeTextMorphoDiTa
+      summary: Tokenize the supplied text
+      tags:
+      - morphodita
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - name: output
+        in: query
+        required: false
+        description: Output format.
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - vertical
+          default: xml
+      responses:
+        '200':
+          description: Tokenization result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+components:
+  parameters:
+    Input:
+      name: input
+      in: query
+      required: false
+      description: Input format to use.
+      schema:
+        type: string
+        enum:
+        - untokenized
+        - vertical
+        default: untokenized
+    ConvertTagset:
+      name: convert_tagset
+      in: query
+      required: false
+      description: Apply the specified tag-set converter.
+      schema:
+        type: string
+        enum:
+        - pdt_to_conll2009
+        - strip_lemma_comment
+        - strip_lemma_id
+    Derivation:
+      name: derivation
+      in: query
+      required: false
+      description: Apply the specified morphological derivation to lemmas.
+      schema:
+        type: string
+        enum:
+        - none
+        - root
+        - path
+        - tree
+        default: none
+    Guesser:
+      name: guesser
+      in: query
+      required: false
+      description: Use the morphological guesser for unknown words.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+        default: 'yes'
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
+      schema:
+        type: string
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
+  schemas:
+    ModelList:
+      type: object
+      properties:
+        models:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - tag
+              - analyze
+              - generate
+              - tokenize
+        default_model:
+          type: string
+      required:
+      - models
+      - default_model
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          description: Output in the requested output format — a string for xml/vertical, a structured array for json.
+      required:
+      - model
+      - result

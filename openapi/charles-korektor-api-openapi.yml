@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: LINDAT Korektor API
+  version: '1'
+  summary: Czech spellchecking, diacritics generation and correction-suggestion service operated by ÚFAL at Charles University.
+  description: Public REST API for Korektor, a statistical spellchecker and diacritics generator operated by the Institute of Formal and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles University, and delivered through the LINDAT/CLARIAH-CZ research infrastructure.
+  contact:
+    name: LINDAT/CLARIAH-CZ Helpdesk
+    email: lindat-help@ufal.mff.cuni.cz
+    url: https://lindat.mff.cuni.cz/user_feedback
+  license:
+    name: CC BY-NC-SA
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  termsOfService: https://lindat.mff.cuni.cz/en/terms-of-use
+servers:
+- url: https://lindat.mff.cuni.cz/services/korektor/api
+  description: Production service operated by ÚFAL, Charles University
+tags:
+- name: korektor
+  description: Spellchecking and diacritics operations
+paths:
+  /models:
+    get:
+      operationId: listKorektorModels
+      summary: List available Korektor models
+      description: Returns the array of available model names and the default model, guaranteed to be the latest Czech spellchecking model.
+      tags:
+      - korektor
+      responses:
+        '200':
+          description: Model inventory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+  /correct:
+    get:
+      operationId: correctText
+      summary: Auto-correct the supplied text
+      tags:
+      - korektor
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - $ref: '#/components/parameters/Input'
+      responses:
+        '200':
+          description: Corrected text
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorrectResponse'
+  /suggestions:
+    get:
+      operationId: suggestCorrections
+      summary: Generate ranked spelling suggestions for the supplied text
+      tags:
+      - korektor
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - $ref: '#/components/parameters/Input'
+      - name: suggestions
+        in: query
+        required: false
+        description: Maximum number of suggestions returned for a single token.
+        schema:
+          type: integer
+          minimum: 1
+          default: 5
+      responses:
+        '200':
+          description: Suggestion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionsResponse'
+components:
+  parameters:
+    Input:
+      name: input
+      in: query
+      required: false
+      description: Input format to use.
+      schema:
+        type: string
+        enum:
+        - untokenized
+        - untokenized_lines
+        - segmented
+        - vertical
+        - horizontal
+        default: untokenized
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use, for example `czech-spellchecker`, `czech-diacritics_generator` or `strip_diacritics`.
+      schema:
+        type: string
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
+  schemas:
+    ModelList:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+        default_model:
+          type: string
+      required:
+      - models
+      - default_model
+    SuggestionsResponse:
+      type: object
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          type: array
+          description: Array of suggestion groups. Each group is an array of strings whose first element is the original span and whose remaining elements are suggestions ordered most to least probable. Concatenating the first elements reproduces the input.
+          items:
+            type: array
+            items:
+              type: string
+      required:
+      - model
+      - result
+    CorrectResponse:
+      type: object
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          type: string
+          description: The corrected text.
+      required:
+      - model
+      - result

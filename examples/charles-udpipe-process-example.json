@@ -1,0 +1,26 @@
+{
+  "operationId": "processText",
+  "summary": "Tokenize, tag and dependency-parse Czech text",
+  "generated": "2026-09-01",
+  "method": "probed",
+  "source": "https://lindat.mff.cuni.cz/services/udpipe/api/process?tokenizer&tagger&parser&output=conllu&data=D%C4%9Bti%20pojedou%20k%20babi%C4%8Dce.",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/udpipe/api/process?tokenizer&tagger&parser&output=conllu&data=D%C4%9Bti%20pojedou%20k%20babi%C4%8Dce.",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "model": "czech-pdtc-ud-2.17-251125",
+      "acknowledgements": [
+        "http://ufal.mff.cuni.cz/udpipe/2#udpipe2_acknowledgements",
+        "https://ufal.mff.cuni.cz/udpipe/2/models#universal_dependencies_217_models"
+      ],
+      "result": "# generator = UDPipe 2, https://lindat.mff.cuni.cz/services/udpipe\n# udpipe_model = czech-pdtc-ud-2.17-251125\n# udpipe_model_licence = CC BY-NC-SA\n# newdoc\n# newpar\n# sent_id = 1\n# text = Děti pojedou k babičce.\n1\tDěti\tdítě\tNOUN\tNNFP1-----A----\tCase=Nom|Gender=Fem|Number=Plur\t2\tnsubj\t_\t_\n2\tpojedou\tjet\tVERB\tVB-P---3F-AAI--\tAspect=Imp|Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Fut|VerbForm=Fin|Voice=Act\t0\troot\t_\t_\n3\tk\tk\tADP\tRR--3----------\tAdpType=Prep|Case=Dat\t4\tcase\t_\t_\n4\tbabičce\tbabička\tNOUN\tNNFS3-----A----\tCase=Dat|Gender=Fem|Number=Sing\t2\tobl\t_\tSpaceAfter=No\n5\t.\t.\tPUNCT\tZ:-------------\t_\t2\tpunct\t_\tSpaceAfter=No\n\n"
+    }
+  }
+}

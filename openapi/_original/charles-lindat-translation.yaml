@@ -1,3 +1,7 @@
+# Provenance: Converted from the operator's own Swagger 2.0 document, published by the service itself.
+# method: searched
+# x-source-url: https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
+# x-operator: institution (UFAL, Faculty of Mathematics and Physics, Charles University)
 openapi: 3.0.3
 info:
   title: LINDAT Translation API

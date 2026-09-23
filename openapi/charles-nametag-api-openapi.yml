@@ -1,0 +1,236 @@
+openapi: 3.2.0
+info:
+  title: LINDAT Nametag API
+  version: '3'
+  summary: Named-entity recognition and tokenization web service operated by ÚFAL at Charles University.
+  description: Public REST API for named-entity recognition and tokenization (NameTag 3) operated by the Institute of Formal and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles University, and delivered through the LINDAT/CLARIAH-CZ research infrastructure.
+  contact:
+    name: LINDAT/CLARIAH-CZ Helpdesk
+    email: lindat-help@ufal.mff.cuni.cz
+    url: https://lindat.mff.cuni.cz/user_feedback
+  license:
+    name: CC BY-NC-SA
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  termsOfService: https://lindat.mff.cuni.cz/en/terms-of-use
+servers:
+- url: https://lindat.mff.cuni.cz/services/nametag/api
+  description: Production service operated by ÚFAL, Charles University
+tags:
+- name: nametag
+  description: Named-entity recognition and tokenization operations
+paths:
+  /models:
+    get:
+      operationId: listNameTagModels
+      summary: List available NameTag models
+      description: Returns the list of models available in the NameTag REST API, the methods each model supports, and the default model (guaranteed to be the latest Czech model).
+      tags:
+      - nametag
+      responses:
+        '200':
+          description: Model inventory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+  /recognize:
+    get:
+      operationId: recognizeEntities
+      summary: Recognize named entities in supplied text
+      tags:
+      - nametag
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - name: input
+        in: query
+        required: false
+        description: Input format to use.
+        schema:
+          type: string
+          enum:
+          - untokenized
+          - vertical
+          - conllu
+          default: untokenized
+      - name: output
+        in: query
+        required: false
+        description: Output format to use.
+        schema:
+          type: string
+          enum:
+          - xml
+          - vertical
+          - conll
+          - conllu-ne
+          default: xml
+      responses:
+        '200':
+          description: Recognition result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    post:
+      operationId: recognizeEntitiesPost
+      summary: Recognize named entities in supplied text (form-encoded or file upload)
+      tags:
+      - nametag
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecognizeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecognizeRequest'
+      responses:
+        '200':
+          description: Recognition result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+  /tokenize:
+    get:
+      operationId: tokenizeText
+      summary: Tokenize supplied text
+      tags:
+      - nametag
+      parameters:
+      - $ref: '#/components/parameters/Data'
+      - $ref: '#/components/parameters/Model'
+      - name: output
+        in: query
+        required: false
+        description: Output format to use.
+        schema:
+          type: string
+          enum:
+          - xml
+          - vertical
+          default: xml
+      responses:
+        '200':
+          description: Tokenization result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    post:
+      operationId: tokenizeTextPost
+      summary: Tokenize supplied text (form-encoded or file upload)
+      tags:
+      - nametag
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenizeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenizeRequest'
+      responses:
+        '200':
+          description: Tokenization result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+components:
+  schemas:
+    ModelList:
+      type: object
+      description: Inventory of available models and the methods each supports.
+      properties:
+        models:
+          type: object
+          description: Map of model name to the list of methods that model supports.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - recognize
+              - tokenize
+        default_model:
+          type: string
+          description: Model used when the caller supplies none.
+      required:
+      - models
+      - default_model
+    TokenizeRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Input text in UTF-8.
+        model:
+          type: string
+        output:
+          type: string
+          enum:
+          - xml
+          - vertical
+      required:
+      - data
+    RecognizeRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Input text in UTF-8.
+        model:
+          type: string
+        input:
+          type: string
+          enum:
+          - untokenized
+          - vertical
+          - conllu
+        output:
+          type: string
+          enum:
+          - xml
+          - vertical
+          - conll
+          - conllu-ne
+      required:
+      - data
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+          description: Model actually used to produce the result.
+        acknowledgements:
+          type: array
+          description: URLs that must be acknowledged when the result is used.
+          items:
+            type: string
+            format: uri
+        result:
+          type: string
+          description: Output text in the requested output format.
+      required:
+      - model
+      - result
+  parameters:
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use. May be a full model name, a name without the -YYMMDD version suffix, or a prefix such as `czech` or `english`; the latest most suitable model is then used.
+      schema:
+        type: string
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string

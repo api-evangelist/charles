@@ -1,0 +1,26 @@
+{
+  "operationId": "recognizeEntities",
+  "summary": "Recognize named entities in Czech text",
+  "generated": "2026-09-01",
+  "method": "probed",
+  "source": "https://lindat.mff.cuni.cz/services/nametag/api/recognize?data=V%C3%A1clav%20Havel%20byl%20prvn%C3%ADm%20prezidentem%20%C4%8Cesk%C3%A9%20republiky.",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/nametag/api/recognize?data=V%C3%A1clav%20Havel%20byl%20prvn%C3%ADm%20prezidentem%20%C4%8Cesk%C3%A9%20republiky.",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "model": "nametag3-czech-cnec2.0-240830",
+      "acknowledgements": [
+        "https://ufal.mff.cuni.cz/nametag/3#acknowledgements",
+        "https://ufal.mff.cuni.cz/nametag/3/models#czech-cnec2"
+      ],
+      "result": "<sentence><ne type=\"P\"><ne type=\"pf\"><token>Václav</token></ne> <ne type=\"ps\"><token>Havel</token></ne></ne> <token>byl</token> <token>prvním</token> <token>prezidentem</token> <ne type=\"gc\"><token>České</token> <token>republiky</token></ne><token>.</token></sentence>"
+    }
+  }
+}

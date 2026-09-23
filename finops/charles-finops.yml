@@ -1,3 +1,6 @@
+# Provenance: FinOps Framework document written by API Evangelist tooling for this provider.
+# method: generated
+# x-operator: institution (UFAL, Faculty of Mathematics and Physics, Charles University)
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/

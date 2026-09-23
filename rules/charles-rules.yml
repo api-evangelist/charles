@@ -1,3 +1,7 @@
+# Provenance: Spectral ruleset derived from the LINDAT Translation OpenAPI held in this repo.
+# method: derived
+# x-source-url: https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
+# x-operator: institution (UFAL, Faculty of Mathematics and Physics, Charles University)
 extends: []
 formats:
   - oas3

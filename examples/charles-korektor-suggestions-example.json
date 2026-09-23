@@ -1,0 +1,66 @@
+{
+  "operationId": "suggestCorrections",
+  "summary": "Ranked spelling suggestions for misspelled Czech text",
+  "generated": "2026-09-01",
+  "method": "probed",
+  "source": "https://lindat.mff.cuni.cz/services/korektor/api/suggestions?data=P%C5%99%C3%ADly%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dky%20k%C5%AF%C5%88%20%C5%AFp%C4%9Bl%20%C4%8F%C3%A1belsk%C3%A9%20%C3%B3di.",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/korektor/api/suggestions?data=P%C5%99%C3%ADly%C5%A1%20%C5%BElu%C5%A5ou%C4%8Dky%20k%C5%AF%C5%88%20%C5%AFp%C4%9Bl%20%C4%8F%C3%A1belsk%C3%A9%20%C3%B3di.",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "model": "czech-spellchecker-130202",
+      "acknowledgements": [
+        "http://ufal.mff.cuni.cz/korektor#korektor_acknowledgements",
+        "http://ufal.mff.cuni.czorektor/users-manual#korektor-czech_acknowledgements"
+      ],
+      "result": [
+        [
+          "Přílyš",
+          "Příliš"
+        ],
+        [
+          " "
+        ],
+        [
+          "žluťoučky",
+          "žluťoučký",
+          "žluťoučké",
+          "žluťoučká",
+          "žluťoučkym"
+        ],
+        [
+          " kůň "
+        ],
+        [
+          "ůpěl",
+          "úpěl",
+          "pěl",
+          "lpěl",
+          "spěl",
+          "čpěl"
+        ],
+        [
+          " ďábelské "
+        ],
+        [
+          "ódi",
+          "ódy",
+          "zdi",
+          "óda",
+          "ódě",
+          "di"
+        ],
+        [
+          "."
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,100 @@
+conformance: '0.1'
+generated: '2026-09-01'
+method: probed
+source: >-
+  Live probes of Charles University hosts on 2026-09-01, plus registry lookups against
+  api.datacite.org and api.crossref.org. Every claim below points at the exact location the
+  evidence was read from. Reward-only: standards in the education regime with no evidence found
+  are listed under not_found rather than asserted.
+provider: charles
+regime: education
+standards:
+  - standard: oai-pmh
+    version: '2.0'
+    status: conformant
+    operator: institution
+    evidence:
+      - location: https://dspace.cuni.cz/oai/request?verb=Identify
+        status: 200
+        detail: >-
+          OAI-PMH 2.0 Identify response. repositoryName "Digitální repozitář UK",
+          adminEmail admin-repozitar@cuni.cz, repositoryIdentifier https://dspace.cuni.cz,
+          granularity YYYY-MM-DDThh:mm:ssZ, earliestDatestamp 2017-03-17T09:30:02Z.
+      - location: https://publications.cuni.cz/oai/request?verb=Identify
+        status: 200
+        detail: >-
+          OAI-PMH 2.0 Identify response. repositoryName "Repozitář publikační činnosti UK",
+          adminEmail admin-repozitar@cuni.cz, earliestDatestamp 2022-11-02T10:40:09Z.
+      - location: https://lindat.mff.cuni.cz/repository/server/oai/request?verb=Identify
+        status: 200
+        detail: >-
+          OAI-PMH 2.0 Identify response. repositoryName "LINDAT/CLARIAH-CZ digital library at the
+          Institute of Formal and Applied Linguistics (ÚFAL)", adminEmail
+          lindat-help@ufal.mff.cuni.cz, earliestDatestamp 2006-06-21T00:00:00Z. The Identify
+          response additionally carries an olac-archive description, so this endpoint is also an
+          OLAC 1.1 archive.
+  - standard: saml
+    version: SAML 2.0
+    status: conformant
+    operator: institution
+    evidence:
+      - location: https://idp.cuni.cz/idp/shibboleth
+        status: 200
+        detail: >-
+          SAML 2.0 metadata EntityDescriptor served as application/xml. entityID
+          https://cas.cuni.cz/idp/shibboleth, IDPSSODescriptor advertising
+          protocolSupportEnumeration "urn:oasis:names:tc:SAML:2.0:protocol
+          urn:oasis:names:tc:SAML:1.1:protocol urn:mace:shibboleth:1.0", mdui:DisplayName
+          "Charles University" / "Univerzita Karlova".
+  - standard: shibboleth
+    status: conformant
+    operator: institution
+    evidence:
+      - location: https://idp.cuni.cz/idp/shibboleth
+        status: 200
+        detail: >-
+          Shibboleth Identity Provider metadata. Carries shibmd:Scope regexp="false" of cuni.cz
+          and the urn:mace:shibboleth:1.0 protocol, which is the Shibboleth-specific extension set.
+          The IdP is registered in the Czech national federation eduID.cz, operated by CESNET.
+  - standard: datacite
+    status: conformant
+    operator: registry-member
+    identifier: CUNI
+    evidence:
+      - location: https://api.datacite.org/providers/cuni
+        status: 200
+        detail: >-
+          DataCite provider record. name "Charles University", symbol CUNI, memberType
+          consortium_organization, country CZ, rorId https://ror.org/024d6js02. Charles University
+          is a registrant in DataCite; the DataCite API contract itself is DataCite's, not the
+          institution's.
+  - standard: crossref
+    status: conformant
+    operator: registry-member
+    evidence:
+      - location: https://api.crossref.org/members/5727
+        status: 200
+        detail: >-
+          Crossref member 5727 "Charles University in Prague, Karolinum Press", Prague, Czechia —
+          the university press. A second Crossref membership, 55007, is held by the Institute of
+          Communication Studies and Journalism, Faculty of Social Sciences, Charles University.
+not_found:
+  - standard: scim
+    detail: No SCIM 2.0 provisioning endpoint found on any cuni.cz host.
+  - standard: lti
+    detail: >-
+      No public LTI tool or platform registration surface found. Moodle instances exist behind
+      faculty hosts but publish no LTI Advantage registration endpoint reachable unauthenticated.
+  - standard: oneroster
+    detail: No IMS OneRoster endpoint found. OneRoster adoption in Czechia is negligible.
+  - standard: ed-fi
+    detail: Ed-Fi is a US K-12 data standard; no deployment found and none expected.
+  - standard: caliper
+    detail: No Caliper Analytics sensor or event store surface found.
+  - standard: qti
+    detail: No QTI item bank or assessment delivery API found.
+  - standard: orcid
+    detail: >-
+      Charles University researchers hold ORCID iDs and the DSpace repositories carry ORCID
+      metadata fields, but no institutional ORCID member API integration was evidenced from a
+      public surface, so no conformance is claimed.

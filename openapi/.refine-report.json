@@ -1,18 +1,40 @@
 {
   "provider": "charles",
   "sources": [
-    "charles-languages-api-openapi.yml",
-    "charles-models-api-openapi.yml",
-    "charles-root-api-openapi.yml"
+    "_original/charles-lindat-korektor.yaml",
+    "_original/charles-lindat-morphodita.yaml",
+    "_original/charles-lindat-nametag.yaml",
+    "_original/charles-lindat-translation.yaml",
+    "_original/charles-lindat-udpipe.yaml"
   ],
   "outputs": [
+    "charles-korektor-api-openapi.yml",
+    "charles-morphodita-api-openapi.yml",
+    "charles-nametag-api-openapi.yml",
     "charles-languages-api-openapi.yml",
     "charles-models-api-openapi.yml",
-    "charles-root-api-openapi.yml"
+    "charles-root-api-openapi.yml",
+    "charles-udpipe-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (5 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "charles-lindat-korektor.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "charles-lindat-morphodita.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "charles-lindat-nametag.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "charles-lindat-translation.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "charles-lindat-udpipe.yaml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "charles-korektor-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-languages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-morphodita-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-nametag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-root-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "charles-udpipe-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

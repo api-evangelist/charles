@@ -1,0 +1,48 @@
+{
+  "operationId": "listNameTagModels",
+  "summary": "List available NameTag models",
+  "generated": "2026-09-01",
+  "method": "probed",
+  "source": "https://lindat.mff.cuni.cz/services/nametag/api/models",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/nametag/api/models",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "models": {
+        "nametag3-czech-cnec2.0-240830": [
+          "tokenize",
+          "recognize"
+        ],
+        "nametag3-multilingual-conll-260521": [
+          "tokenize",
+          "recognize"
+        ],
+        "nametag3-multilingual-uner-260521": [
+          "tokenize",
+          "recognize"
+        ],
+        "nametag3-multilingual-onto-260521": [
+          "tokenize",
+          "recognize"
+        ],
+        "nametag3-multilingual-conll-250203": [
+          "tokenize",
+          "recognize"
+        ],
+        "nametag3-multilingual-uner-250203": [
+          "tokenize",
+          "recognize"
+        ]
+      },
+      "default_model": "nametag3-czech",
+      "_note": "Truncated to 6 of 22 models advertised by the live service on 2026-09-01."
+    }
+  }
+}

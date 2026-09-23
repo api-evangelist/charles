@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: LINDAT Udpipe API
+  version: '2'
+  summary: Tokenization, POS tagging, lemmatization and dependency parsing operated by ÚFAL at Charles University.
+  description: Public REST API for UDPipe, a trainable pipeline for tokenization, part-of-speech tagging, lemmatization and dependency parsing of CoNLL-U files, operated by the Institute of Formal and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles University, and delivered through the LINDAT/CLARIAH-CZ research infrastructure.
+  contact:
+    name: LINDAT/CLARIAH-CZ Helpdesk
+    email: lindat-help@ufal.mff.cuni.cz
+    url: https://lindat.mff.cuni.cz/user_feedback
+  license:
+    name: CC BY-NC-SA
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+  termsOfService: https://lindat.mff.cuni.cz/en/terms-of-use
+servers:
+- url: https://lindat.mff.cuni.cz/services/udpipe/api
+  description: Production service operated by ÚFAL, Charles University
+tags:
+- name: udpipe
+  description: Universal Dependencies processing operations
+paths:
+  /models:
+    get:
+      operationId: listUDPipeModels
+      summary: List available UDPipe models
+      description: Returns every model available in the UDPipe REST API with the components it carries (tokenizer, tagger, parser), plus the default model.
+      tags:
+      - udpipe
+      responses:
+        '200':
+          description: Model inventory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+  /process:
+    get:
+      operationId: processText
+      summary: Process supplied data through the UDPipe pipeline
+      tags:
+      - udpipe
+      parameters:
+      - name: data
+        in: query
+        required: true
+        description: Input text in UTF-8.
+        schema:
+          type: string
+      - name: model
+        in: query
+        required: false
+        description: Model to use. Accepts a full model name, a name without the version suffix, a model-name prefix, or an ISO 639-1 / ISO 639-2 language code such as `cs`, `ces` or `en`.
+        schema:
+          type: string
+      - name: tokenizer
+        in: query
+        required: false
+        description: When present, the input is treated as plain text and tokenized. A value is passed through as tokenizer options.
+        schema:
+          type: string
+      - name: input
+        in: query
+        required: false
+        description: Input format used when the tokenizer is not engaged.
+        schema:
+          type: string
+          enum:
+          - conllu
+          - generic_tokenizer
+          - horizontal
+          - vertical
+          default: conllu
+      - name: tagger
+        in: query
+        required: false
+        description: When present, the input is POS tagged and lemmatized. A value is passed through to the tagger.
+        schema:
+          type: string
+      - name: parser
+        in: query
+        required: false
+        description: When present, the input is dependency parsed. A value is passed through to the parser.
+        schema:
+          type: string
+      - name: output
+        in: query
+        required: false
+        description: Output format.
+        schema:
+          type: string
+          enum:
+          - conllu
+          - horizontal
+          - matxin
+          - plaintext
+          - vertical
+          default: conllu
+      responses:
+        '200':
+          description: Processed output
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    post:
+      operationId: processTextPost
+      summary: Process supplied data (form-encoded or file upload)
+      tags:
+      - udpipe
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProcessRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProcessRequest'
+      responses:
+        '200':
+          description: Processed output
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+components:
+  schemas:
+    ProcessRequest:
+      type: object
+      properties:
+        data:
+          type: string
+        model:
+          type: string
+        tokenizer:
+          type: string
+        input:
+          type: string
+          enum:
+          - conllu
+          - generic_tokenizer
+          - horizontal
+          - vertical
+        tagger:
+          type: string
+        parser:
+          type: string
+        output:
+          type: string
+          enum:
+          - conllu
+          - horizontal
+          - matxin
+          - plaintext
+          - vertical
+      required:
+      - data
+    ModelList:
+      type: object
+      properties:
+        models:
+          type: object
+          description: Map of model name to the pipeline components that model provides.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - tokenizer
+              - tagger
+              - parser
+        default_model:
+          type: string
+      required:
+      - models
+      - default_model
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          type: string
+          description: UDPipe output in the requested output format.
+      required:
+      - model
+      - result

@@ -1,0 +1,57 @@
+{
+  "operationId": "tagText",
+  "summary": "Part-of-speech tag and lemmatize Czech text (JSON output)",
+  "generated": "2026-09-01",
+  "method": "probed",
+  "source": "https://lindat.mff.cuni.cz/services/morphodita/api/tag?output=json&data=D%C4%9Bti%20pojedou%20k%20babi%C4%8Dce.",
+  "request": {
+    "method": "GET",
+    "url": "https://lindat.mff.cuni.cz/services/morphodita/api/tag?output=json&data=D%C4%9Bti%20pojedou%20k%20babi%C4%8Dce.",
+    "headers": {
+      "accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/json",
+    "body": {
+      "model": "czech-morfflex2.1-pdtc2.0-250909",
+      "acknowledgements": [
+        "http://ufal.mff.cuni.cz/morphodita#morphodita_acknowledgements",
+        "http://ufal.mff.cuni.cz/morphodita/users-manual#czech-morfflex2-pdtc_acknowledgements"
+      ],
+      "result": [
+        [
+          {
+            "token": "Děti",
+            "lemma": "dítě-2",
+            "tag": "NNFP1-----A----",
+            "space": " "
+          },
+          {
+            "token": "pojedou",
+            "lemma": "jet-1",
+            "tag": "VB-P---3F-AAI--",
+            "space": " "
+          },
+          {
+            "token": "k",
+            "lemma": "k-1",
+            "tag": "RR--3----------",
+            "space": " "
+          },
+          {
+            "token": "babičce",
+            "lemma": "babička",
+            "tag": "NNFS3-----A----"
+          },
+          {
+            "token": ".",
+            "lemma": ".",
+            "tag": "Z:-------------"
+          }
+        ]
+      ]
+    }
+  }
+}

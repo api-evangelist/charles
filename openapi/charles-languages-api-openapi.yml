@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LINDAT Translation languages API
+  title: LINDAT Translation Languages API
   version: '2.0'
   description: Public REST API for neural machine translation operated by the Institute of Formal and Applied Linguistics (UFAL) at Charles University as part of the LINDAT/CLARIAH-CZ research infrastructure. Converted faithfully from the upstream Swagger 2.0 specification at https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json
 servers:
 - url: https://lindat.mff.cuni.cz/services/translation/api/v2
 tags:
-- name: languages
+- name: Languages
   description: Operations with source and target languages
 paths:
   /languages/:
@@ -14,7 +14,7 @@ paths:
       operationId: get_language_collection
       summary: Returns a list of available languages
       tags:
-      - languages
+      - Languages
       responses:
         '200':
           description: Success
@@ -27,7 +27,7 @@ paths:
       summary: Translate input from src lang to tgt lang
       description: It expects the text in variable called `input_text` and handles both "application/x-www-form-urlencoded" and "multipart/form-data" (for uploading text/plain files)
       tags:
-      - languages
+      - Languages
       parameters:
       - name: src
         in: query
@@ -76,7 +76,7 @@ paths:
       operationId: get_language_item
       summary: Returns a language resource object
       tags:
-      - languages
+      - Languages
       parameters:
       - name: language
         in: path
@@ -94,24 +94,6 @@ paths:
                 $ref: '#/components/schemas/LanguageResource'
 components:
   schemas:
-    EmbeddedLanguages:
-      type: object
-      properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/LanguageResource'
-    LanguageLinks:
-      type: object
-      properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-        translate:
-          $ref: '#/components/schemas/Link'
     LanguageResourceLinks:
       type: object
       properties:
@@ -127,17 +109,24 @@ components:
             $ref: '#/components/schemas/Link'
         self:
           $ref: '#/components/schemas/Link'
-    LanguageResource:
+    LanguagesResource:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/LanguageResourceLinks'
-        name:
-          type: string
-          example: cs
-        title:
-          type: string
-          example: Czech
+          $ref: '#/components/schemas/LanguageLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedLanguages'
+    LanguageLinks:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        translate:
+          $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -157,10 +146,21 @@ components:
           type: boolean
         hreflang:
           type: string
-    LanguagesResource:
+    EmbeddedLanguages:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageResource'
+    LanguageResource:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/LanguageLinks'
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedLanguages'
+          $ref: '#/components/schemas/LanguageResourceLinks'
+        name:
+          type: string
+          example: cs
+        title:
+          type: string
+          example: Czech
