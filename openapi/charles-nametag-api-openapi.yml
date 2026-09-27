@@ -142,41 +142,6 @@ paths:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
   schemas:
-    ModelList:
-      type: object
-      description: Inventory of available models and the methods each supports.
-      properties:
-        models:
-          type: object
-          description: Map of model name to the list of methods that model supports.
-          additionalProperties:
-            type: array
-            items:
-              type: string
-              enum:
-              - recognize
-              - tokenize
-        default_model:
-          type: string
-          description: Model used when the caller supplies none.
-      required:
-      - models
-      - default_model
-    TokenizeRequest:
-      type: object
-      properties:
-        data:
-          type: string
-          description: Input text in UTF-8.
-        model:
-          type: string
-        output:
-          type: string
-          enum:
-          - xml
-          - vertical
-      required:
-      - data
     RecognizeRequest:
       type: object
       properties:
@@ -219,18 +184,53 @@ components:
       required:
       - model
       - result
+    ModelList:
+      type: object
+      description: Inventory of available models and the methods each supports.
+      properties:
+        models:
+          type: object
+          description: Map of model name to the list of methods that model supports.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - recognize
+              - tokenize
+        default_model:
+          type: string
+          description: Model used when the caller supplies none.
+      required:
+      - models
+      - default_model
+    TokenizeRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Input text in UTF-8.
+        model:
+          type: string
+        output:
+          type: string
+          enum:
+          - xml
+          - vertical
+      required:
+      - data
   parameters:
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use. May be a full model name, a name without the -YYMMDD version suffix, or a prefix such as `czech` or `english`; the latest most suitable model is then used.
-      schema:
-        type: string
     Data:
       name: data
       in: query
       required: true
       description: Input text in UTF-8.
+      schema:
+        type: string
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use. May be a full model name, a name without the -YYMMDD version suffix, or a prefix such as `czech` or `english`; the latest most suitable model is then used.
       schema:
         type: string

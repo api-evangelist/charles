@@ -94,39 +94,24 @@ paths:
                 $ref: '#/components/schemas/LanguageResource'
 components:
   schemas:
-    LanguageResourceLinks:
-      type: object
-      properties:
-        translate:
-          $ref: '#/components/schemas/Link'
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    LanguagesResource:
+    LanguageResource:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/LanguageLinks'
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedLanguages'
-    LanguageLinks:
+          $ref: '#/components/schemas/LanguageResourceLinks'
+        name:
+          type: string
+          example: cs
+        title:
+          type: string
+          example: Czech
+    EmbeddedLanguages:
       type: object
       properties:
         item:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-        translate:
-          $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/LanguageResource'
     Link:
       type: object
       properties:
@@ -146,21 +131,36 @@ components:
           type: boolean
         hreflang:
           type: string
-    EmbeddedLanguages:
+    LanguagesResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/LanguageLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedLanguages'
+    LanguageLinks:
       type: object
       properties:
         item:
           type: array
           items:
-            $ref: '#/components/schemas/LanguageResource'
-    LanguageResource:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        translate:
+          $ref: '#/components/schemas/Link'
+    LanguageResourceLinks:
       type: object
       properties:
-        _links:
-          $ref: '#/components/schemas/LanguageResourceLinks'
-        name:
-          type: string
-          example: cs
-        title:
-          type: string
-          example: Czech
+        translate:
+          $ref: '#/components/schemas/Link'
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'

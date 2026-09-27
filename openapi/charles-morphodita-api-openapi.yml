@@ -151,6 +151,17 @@ paths:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
   parameters:
+    Guesser:
+      name: guesser
+      in: query
+      required: false
+      description: Use the morphological guesser for unknown words.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+        default: 'yes'
     Input:
       name: input
       in: query
@@ -162,17 +173,6 @@ components:
         - untokenized
         - vertical
         default: untokenized
-    ConvertTagset:
-      name: convert_tagset
-      in: query
-      required: false
-      description: Apply the specified tag-set converter.
-      schema:
-        type: string
-        enum:
-        - pdt_to_conll2009
-        - strip_lemma_comment
-        - strip_lemma_id
     Derivation:
       name: derivation
       in: query
@@ -186,24 +186,6 @@ components:
         - path
         - tree
         default: none
-    Guesser:
-      name: guesser
-      in: query
-      required: false
-      description: Use the morphological guesser for unknown words.
-      schema:
-        type: string
-        enum:
-        - 'yes'
-        - 'no'
-        default: 'yes'
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
-      schema:
-        type: string
     Data:
       name: data
       in: query
@@ -211,7 +193,41 @@ components:
       description: Input text in UTF-8.
       schema:
         type: string
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
+      schema:
+        type: string
+    ConvertTagset:
+      name: convert_tagset
+      in: query
+      required: false
+      description: Apply the specified tag-set converter.
+      schema:
+        type: string
+        enum:
+        - pdt_to_conll2009
+        - strip_lemma_comment
+        - strip_lemma_id
   schemas:
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          description: Output in the requested output format — a string for xml/vertical, a structured array for json.
+      required:
+      - model
+      - result
     ModelList:
       type: object
       properties:
@@ -231,19 +247,3 @@ components:
       required:
       - models
       - default_model
-    ServiceResponse:
-      type: object
-      description: Common LINDAT web-service response envelope.
-      properties:
-        model:
-          type: string
-        acknowledgements:
-          type: array
-          items:
-            type: string
-            format: uri
-        result:
-          description: Output in the requested output format — a string for xml/vertical, a structured array for json.
-      required:
-      - model
-      - result

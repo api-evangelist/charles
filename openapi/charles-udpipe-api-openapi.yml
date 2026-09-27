@@ -125,6 +125,23 @@ paths:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
   schemas:
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          type: string
+          description: UDPipe output in the requested output format.
+      required:
+      - model
+      - result
     ProcessRequest:
       type: object
       properties:
@@ -174,20 +191,3 @@ components:
       required:
       - models
       - default_model
-    ServiceResponse:
-      type: object
-      description: Common LINDAT web-service response envelope.
-      properties:
-        model:
-          type: string
-        acknowledgements:
-          type: array
-          items:
-            type: string
-            format: uri
-        result:
-          type: string
-          description: UDPipe output in the requested output format.
-      required:
-      - model
-      - result

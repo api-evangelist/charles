@@ -91,13 +91,6 @@ components:
         - vertical
         - horizontal
         default: untokenized
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use, for example `czech-spellchecker`, `czech-diacritics_generator` or `strip_diacritics`.
-      schema:
-        type: string
     Data:
       name: data
       in: query
@@ -105,7 +98,30 @@ components:
       description: Input text in UTF-8.
       schema:
         type: string
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use, for example `czech-spellchecker`, `czech-diacritics_generator` or `strip_diacritics`.
+      schema:
+        type: string
   schemas:
+    CorrectResponse:
+      type: object
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          type: string
+          description: The corrected text.
+      required:
+      - model
+      - result
     ModelList:
       type: object
       properties:
@@ -135,22 +151,6 @@ components:
             type: array
             items:
               type: string
-      required:
-      - model
-      - result
-    CorrectResponse:
-      type: object
-      properties:
-        model:
-          type: string
-        acknowledgements:
-          type: array
-          items:
-            type: string
-            format: uri
-        result:
-          type: string
-          description: The corrected text.
       required:
       - model
       - result
