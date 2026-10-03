@@ -151,6 +151,17 @@ paths:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
   parameters:
+    ConvertTagset:
+      name: convert_tagset
+      in: query
+      required: false
+      description: Apply the specified tag-set converter.
+      schema:
+        type: string
+        enum:
+        - pdt_to_conll2009
+        - strip_lemma_comment
+        - strip_lemma_id
     Guesser:
       name: guesser
       in: query
@@ -162,6 +173,20 @@ components:
         - 'yes'
         - 'no'
         default: 'yes'
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
+      schema:
+        type: string
     Input:
       name: input
       in: query
@@ -186,31 +211,6 @@ components:
         - path
         - tree
         default: none
-    Data:
-      name: data
-      in: query
-      required: true
-      description: Input text in UTF-8.
-      schema:
-        type: string
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
-      schema:
-        type: string
-    ConvertTagset:
-      name: convert_tagset
-      in: query
-      required: false
-      description: Apply the specified tag-set converter.
-      schema:
-        type: string
-        enum:
-        - pdt_to_conll2009
-        - strip_lemma_comment
-        - strip_lemma_id
   schemas:
     ServiceResponse:
       type: object

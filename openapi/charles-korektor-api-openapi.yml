@@ -77,20 +77,6 @@ paths:
                 $ref: '#/components/schemas/SuggestionsResponse'
 components:
   parameters:
-    Input:
-      name: input
-      in: query
-      required: false
-      description: Input format to use.
-      schema:
-        type: string
-        enum:
-        - untokenized
-        - untokenized_lines
-        - segmented
-        - vertical
-        - horizontal
-        default: untokenized
     Data:
       name: data
       in: query
@@ -105,6 +91,20 @@ components:
       description: Model to use, for example `czech-spellchecker`, `czech-diacritics_generator` or `strip_diacritics`.
       schema:
         type: string
+    Input:
+      name: input
+      in: query
+      required: false
+      description: Input format to use.
+      schema:
+        type: string
+        enum:
+        - untokenized
+        - untokenized_lines
+        - segmented
+        - vertical
+        - horizontal
+        default: untokenized
   schemas:
     CorrectResponse:
       type: object
@@ -122,18 +122,6 @@ components:
       required:
       - model
       - result
-    ModelList:
-      type: object
-      properties:
-        models:
-          type: array
-          items:
-            type: string
-        default_model:
-          type: string
-      required:
-      - models
-      - default_model
     SuggestionsResponse:
       type: object
       properties:
@@ -154,3 +142,15 @@ components:
       required:
       - model
       - result
+    ModelList:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+        default_model:
+          type: string
+      required:
+      - models
+      - default_model

@@ -94,24 +94,6 @@ paths:
                 $ref: '#/components/schemas/LanguageResource'
 components:
   schemas:
-    LanguageResource:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/LanguageResourceLinks'
-        name:
-          type: string
-          example: cs
-        title:
-          type: string
-          example: Czech
-    EmbeddedLanguages:
-      type: object
-      properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/LanguageResource'
     Link:
       type: object
       properties:
@@ -131,6 +113,39 @@ components:
           type: boolean
         hreflang:
           type: string
+    LanguageResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/LanguageResourceLinks'
+        name:
+          type: string
+          example: cs
+        title:
+          type: string
+          example: Czech
+    LanguageResourceLinks:
+      type: object
+      properties:
+        translate:
+          $ref: '#/components/schemas/Link'
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+    EmbeddedLanguages:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageResource'
     LanguagesResource:
       type: object
       properties:
@@ -148,19 +163,4 @@ components:
         self:
           $ref: '#/components/schemas/Link'
         translate:
-          $ref: '#/components/schemas/Link'
-    LanguageResourceLinks:
-      type: object
-      properties:
-        translate:
-          $ref: '#/components/schemas/Link'
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        self:
           $ref: '#/components/schemas/Link'

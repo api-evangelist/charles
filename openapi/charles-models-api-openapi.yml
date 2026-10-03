@@ -113,6 +113,29 @@ components:
           type: boolean
         hreflang:
           type: string
+    ModelLinks:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+    EmbeddedModels:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelResource'
+    ModelResourceLinks:
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        translate:
+          $ref: '#/components/schemas/Link'
     ModelsResource:
       type: object
       properties:
@@ -145,26 +168,3 @@ components:
         title:
           type: string
           example: en-cs (English->Czech (CUBBITT))
-    ModelResourceLinks:
-      type: object
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        translate:
-          $ref: '#/components/schemas/Link'
-    EmbeddedModels:
-      type: object
-      properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/ModelResource'
-    ModelLinks:
-      type: object
-      properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'

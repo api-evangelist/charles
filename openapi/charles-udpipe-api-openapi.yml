@@ -142,6 +142,25 @@ components:
       required:
       - model
       - result
+    ModelList:
+      type: object
+      properties:
+        models:
+          type: object
+          description: Map of model name to the pipeline components that model provides.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - tokenizer
+              - tagger
+              - parser
+        default_model:
+          type: string
+      required:
+      - models
+      - default_model
     ProcessRequest:
       type: object
       properties:
@@ -172,22 +191,3 @@ components:
           - vertical
       required:
       - data
-    ModelList:
-      type: object
-      properties:
-        models:
-          type: object
-          description: Map of model name to the pipeline components that model provides.
-          additionalProperties:
-            type: array
-            items:
-              type: string
-              enum:
-              - tokenizer
-              - tagger
-              - parser
-        default_model:
-          type: string
-      required:
-      - models
-      - default_model

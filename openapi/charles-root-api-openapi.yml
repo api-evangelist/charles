@@ -25,11 +25,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RootResource:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/Links'
     Link:
       type: object
       properties:
@@ -58,3 +53,8 @@ components:
           $ref: '#/components/schemas/Link'
         languages:
           $ref: '#/components/schemas/Link'
+    RootResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
