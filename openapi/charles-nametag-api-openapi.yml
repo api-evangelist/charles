@@ -141,41 +141,42 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
-  parameters:
-    Data:
-      name: data
-      in: query
-      required: true
-      description: Input text in UTF-8.
-      schema:
-        type: string
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use. May be a full model name, a name without the -YYMMDD version suffix, or a prefix such as `czech` or `english`; the latest most suitable model is then used.
-      schema:
-        type: string
   schemas:
-    ServiceResponse:
+    ModelList:
       type: object
-      description: Common LINDAT web-service response envelope.
+      description: Inventory of available models and the methods each supports.
       properties:
+        models:
+          type: object
+          description: Map of model name to the list of methods that model supports.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              enum:
+              - recognize
+              - tokenize
+        default_model:
+          type: string
+          description: Model used when the caller supplies none.
+      required:
+      - models
+      - default_model
+    TokenizeRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Input text in UTF-8.
         model:
           type: string
-          description: Model actually used to produce the result.
-        acknowledgements:
-          type: array
-          description: URLs that must be acknowledged when the result is used.
-          items:
-            type: string
-            format: uri
-        result:
+        output:
           type: string
-          description: Output text in the requested output format.
+          enum:
+          - xml
+          - vertical
       required:
-      - model
-      - result
+      - data
     RecognizeRequest:
       type: object
       properties:
@@ -199,38 +200,37 @@ components:
           - conllu-ne
       required:
       - data
-    TokenizeRequest:
+    ServiceResponse:
       type: object
+      description: Common LINDAT web-service response envelope.
       properties:
-        data:
-          type: string
-          description: Input text in UTF-8.
         model:
           type: string
-        output:
+          description: Model actually used to produce the result.
+        acknowledgements:
+          type: array
+          description: URLs that must be acknowledged when the result is used.
+          items:
+            type: string
+            format: uri
+        result:
           type: string
-          enum:
-          - xml
-          - vertical
+          description: Output text in the requested output format.
       required:
-      - data
-    ModelList:
-      type: object
-      description: Inventory of available models and the methods each supports.
-      properties:
-        models:
-          type: object
-          description: Map of model name to the list of methods that model supports.
-          additionalProperties:
-            type: array
-            items:
-              type: string
-              enum:
-              - recognize
-              - tokenize
-        default_model:
-          type: string
-          description: Model used when the caller supplies none.
-      required:
-      - models
-      - default_model
+      - model
+      - result
+  parameters:
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use. May be a full model name, a name without the -YYMMDD version suffix, or a prefix such as `czech` or `english`; the latest most suitable model is then used.
+      schema:
+        type: string

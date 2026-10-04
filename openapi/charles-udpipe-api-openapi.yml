@@ -125,6 +125,36 @@ paths:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
   schemas:
+    ProcessRequest:
+      type: object
+      properties:
+        data:
+          type: string
+        model:
+          type: string
+        tokenizer:
+          type: string
+        input:
+          type: string
+          enum:
+          - conllu
+          - generic_tokenizer
+          - horizontal
+          - vertical
+        tagger:
+          type: string
+        parser:
+          type: string
+        output:
+          type: string
+          enum:
+          - conllu
+          - horizontal
+          - matxin
+          - plaintext
+          - vertical
+      required:
+      - data
     ServiceResponse:
       type: object
       description: Common LINDAT web-service response envelope.
@@ -161,33 +191,3 @@ components:
       required:
       - models
       - default_model
-    ProcessRequest:
-      type: object
-      properties:
-        data:
-          type: string
-        model:
-          type: string
-        tokenizer:
-          type: string
-        input:
-          type: string
-          enum:
-          - conllu
-          - generic_tokenizer
-          - horizontal
-          - vertical
-        tagger:
-          type: string
-        parser:
-          type: string
-        output:
-          type: string
-          enum:
-          - conllu
-          - horizontal
-          - matxin
-          - plaintext
-          - vertical
-      required:
-      - data

@@ -113,17 +113,13 @@ components:
           type: boolean
         hreflang:
           type: string
-    LanguageResource:
+    LanguagesResource:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/LanguageResourceLinks'
-        name:
-          type: string
-          example: cs
-        title:
-          type: string
-          example: Czech
+          $ref: '#/components/schemas/LanguageLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedLanguages'
     LanguageResourceLinks:
       type: object
       properties:
@@ -146,13 +142,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LanguageResource'
-    LanguagesResource:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/LanguageLinks'
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedLanguages'
     LanguageLinks:
       type: object
       properties:
@@ -164,3 +153,14 @@ components:
           $ref: '#/components/schemas/Link'
         translate:
           $ref: '#/components/schemas/Link'
+    LanguageResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/LanguageResourceLinks'
+        name:
+          type: string
+          example: cs
+        title:
+          type: string
+          example: Czech

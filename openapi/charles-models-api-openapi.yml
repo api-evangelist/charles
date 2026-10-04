@@ -94,6 +94,15 @@ paths:
           description: You sent a file but it was not text/plain
 components:
   schemas:
+    ModelLinks:
+      type: object
+      properties:
+        item:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -113,15 +122,13 @@ components:
           type: boolean
         hreflang:
           type: string
-    ModelLinks:
+    ModelsResource:
       type: object
       properties:
-        item:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/ModelLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedModels'
     EmbeddedModels:
       type: object
       properties:
@@ -136,13 +143,6 @@ components:
           $ref: '#/components/schemas/Link'
         translate:
           $ref: '#/components/schemas/Link'
-    ModelsResource:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/ModelLinks'
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedModels'
     ModelResource:
       type: object
       required:

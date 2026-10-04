@@ -150,84 +150,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServiceResponse'
 components:
-  parameters:
-    ConvertTagset:
-      name: convert_tagset
-      in: query
-      required: false
-      description: Apply the specified tag-set converter.
-      schema:
-        type: string
-        enum:
-        - pdt_to_conll2009
-        - strip_lemma_comment
-        - strip_lemma_id
-    Guesser:
-      name: guesser
-      in: query
-      required: false
-      description: Use the morphological guesser for unknown words.
-      schema:
-        type: string
-        enum:
-        - 'yes'
-        - 'no'
-        default: 'yes'
-    Data:
-      name: data
-      in: query
-      required: true
-      description: Input text in UTF-8.
-      schema:
-        type: string
-    Model:
-      name: model
-      in: query
-      required: false
-      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
-      schema:
-        type: string
-    Input:
-      name: input
-      in: query
-      required: false
-      description: Input format to use.
-      schema:
-        type: string
-        enum:
-        - untokenized
-        - vertical
-        default: untokenized
-    Derivation:
-      name: derivation
-      in: query
-      required: false
-      description: Apply the specified morphological derivation to lemmas.
-      schema:
-        type: string
-        enum:
-        - none
-        - root
-        - path
-        - tree
-        default: none
   schemas:
-    ServiceResponse:
-      type: object
-      description: Common LINDAT web-service response envelope.
-      properties:
-        model:
-          type: string
-        acknowledgements:
-          type: array
-          items:
-            type: string
-            format: uri
-        result:
-          description: Output in the requested output format — a string for xml/vertical, a structured array for json.
-      required:
-      - model
-      - result
     ModelList:
       type: object
       properties:
@@ -247,3 +170,80 @@ components:
       required:
       - models
       - default_model
+    ServiceResponse:
+      type: object
+      description: Common LINDAT web-service response envelope.
+      properties:
+        model:
+          type: string
+        acknowledgements:
+          type: array
+          items:
+            type: string
+            format: uri
+        result:
+          description: Output in the requested output format — a string for xml/vertical, a structured array for json.
+      required:
+      - model
+      - result
+  parameters:
+    Derivation:
+      name: derivation
+      in: query
+      required: false
+      description: Apply the specified morphological derivation to lemmas.
+      schema:
+        type: string
+        enum:
+        - none
+        - root
+        - path
+        - tree
+        default: none
+    ConvertTagset:
+      name: convert_tagset
+      in: query
+      required: false
+      description: Apply the specified tag-set converter.
+      schema:
+        type: string
+        enum:
+        - pdt_to_conll2009
+        - strip_lemma_comment
+        - strip_lemma_id
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
+    Input:
+      name: input
+      in: query
+      required: false
+      description: Input format to use.
+      schema:
+        type: string
+        enum:
+        - untokenized
+        - vertical
+        default: untokenized
+    Model:
+      name: model
+      in: query
+      required: false
+      description: Model to use; accepts a full name, a name without the version suffix, or a prefix.
+      schema:
+        type: string
+    Guesser:
+      name: guesser
+      in: query
+      required: false
+      description: Use the morphological guesser for unknown words.
+      schema:
+        type: string
+        enum:
+        - 'yes'
+        - 'no'
+        default: 'yes'
