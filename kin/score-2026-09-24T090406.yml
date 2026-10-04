@@ -1,22 +1,20 @@
-# Kin Score artifact — charles — 2026-09-01T210448
+# Kin Score artifact — charles — 2026-09-24T090406
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: charles
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T210448
-  composite: 36.7
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T090406
+  composite: 43.3
+  band: developing
   facets:
-    discoverability: 68.5
-    contract_quality: 51.6
-    governance: 9.8
-    operational_transparency: 26.3
-    developer_ergonomics: 21.4
-    commercial_clarity: 28.9
+    discoverability: 85.2
+    contract_quality: 53.1
     contract_governance: 9.8
-    access_clarity: 28.9
+    operational_transparency: 23.7
+    developer_ergonomics: 33.3
+    access_clarity: 39.5
   agent_readiness:
     score: 22.3
     band: agent-aware
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Education & Research
     regime_id: education
-    score: 42.6
+    score: 50.0
     matched_via: tags
   provenance:
     agentic_access: derived
