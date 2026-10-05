@@ -1,0 +1,12 @@
+{
+ "url": "https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json",
+ "requested_url": "https://lindat.mff.cuni.cz/services/translation/api/v2/swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 9558,
+ "sha256": "2c13259b64d8d4ecc4f16150c07cf4b7ec87bb79b34d12a6332d79fd2df209f0",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
