@@ -94,32 +94,17 @@ paths:
                 $ref: '#/components/schemas/LanguageResource'
 components:
   schemas:
-    Link:
-      type: object
-      properties:
-        href:
-          type: string
-        name:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        templated:
-          type: boolean
-        hreflang:
-          type: string
-    LanguagesResource:
+    LanguageResource:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/LanguageLinks'
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedLanguages'
+          $ref: '#/components/schemas/LanguageResourceLinks'
+        name:
+          type: string
+          example: cs
+        title:
+          type: string
+          example: Czech
     LanguageResourceLinks:
       type: object
       properties:
@@ -142,6 +127,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LanguageResource'
+    LanguagesResource:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/LanguageLinks'
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedLanguages'
     LanguageLinks:
       type: object
       properties:
@@ -153,14 +145,22 @@ components:
           $ref: '#/components/schemas/Link'
         translate:
           $ref: '#/components/schemas/Link'
-    LanguageResource:
+    Link:
       type: object
       properties:
-        _links:
-          $ref: '#/components/schemas/LanguageResourceLinks'
+        href:
+          type: string
         name:
           type: string
-          example: cs
         title:
           type: string
-          example: Czech
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        templated:
+          type: boolean
+        hreflang:
+          type: string

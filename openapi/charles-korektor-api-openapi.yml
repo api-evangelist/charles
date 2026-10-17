@@ -126,13 +126,6 @@ components:
       - model
       - result
   parameters:
-    Data:
-      name: data
-      in: query
-      required: true
-      description: Input text in UTF-8.
-      schema:
-        type: string
     Input:
       name: input
       in: query
@@ -147,6 +140,13 @@ components:
         - vertical
         - horizontal
         default: untokenized
+    Data:
+      name: data
+      in: query
+      required: true
+      description: Input text in UTF-8.
+      schema:
+        type: string
     Model:
       name: model
       in: query

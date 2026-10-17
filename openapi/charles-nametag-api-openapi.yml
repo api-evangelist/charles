@@ -162,21 +162,6 @@ components:
       required:
       - models
       - default_model
-    TokenizeRequest:
-      type: object
-      properties:
-        data:
-          type: string
-          description: Input text in UTF-8.
-        model:
-          type: string
-        output:
-          type: string
-          enum:
-          - xml
-          - vertical
-      required:
-      - data
     RecognizeRequest:
       type: object
       properties:
@@ -198,6 +183,21 @@ components:
           - vertical
           - conll
           - conllu-ne
+      required:
+      - data
+    TokenizeRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Input text in UTF-8.
+        model:
+          type: string
+        output:
+          type: string
+          enum:
+          - xml
+          - vertical
       required:
       - data
     ServiceResponse:
