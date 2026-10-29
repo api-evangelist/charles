@@ -1,4 +1,4 @@
-# Charles University (charles)
+# Charles University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,48 +64,183 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Charles University (Univerzita Karlova), founded in 1348 in Prague, is the largest and oldest university in Czechia and is ranked #246 in the QS World University Rankings 2025. This repository catalogs the institution's public developer/API footprint as an [APIs.json](https://apisjson.org) provider profile. That footprint is limited: there is no central developer portal, but the university operates standards-based DSpace OAI-PMH repository endpoints and, via the UFAL institute's LINDAT/CLARIAH-CZ platform, documented public NLP REST web services.
+Charles University (Univerzita Karlova), founded in 1348 in Prague, is the largest and oldest university in Czechia. Unusually for a university, a substantial part of its programmable footprint is genuinely institution-operated rather than a vendor contract running under its name. The Institute of Formal and Applied Linguistics (UFAL) in the Faculty of Mathematics and Physics runs the LINDAT/CLARIAH-CZ research infrastructure and publishes five documented, keyless, production REST APIs on its own host — machine translation, UDPipe (tokenization, tagging, lemmatization and dependency parsing across 961 Universal Dependencies models), NameTag (named-entity recognition), MorphoDiTa (morphological analysis and generation) and Korektor (Czech spellchecking and diacritics). Three DSpace repositories on university-owned infrastructure expose OAI-PMH 2.0, and the LINDAT repository additionally exposes a DSpace 7 HAL REST API. The university operates its own Shibboleth SAML identity provider at idp.cuni.cz, registered in the Czech national federation eduID.cz, and is a DataCite registrant (CUNI) and Crossref member. What it does NOT have is a central developer portal, an open-data portal, or any public API over the Study Information System (SIS) or student records — those are gated behind eduID/Shibboleth. Library discovery (UKAZ) is an Ex Libris Primo tenancy and cuni.figshare.com is a Figshare tenancy; both are real institutional relationships whose contracts belong to the vendors.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/charles/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=charles-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · Research · Czechia · Europe · Language Technology · Natural Language Processing · Machine Translation · Research Repository · Identity Federation · OAI-PMH
 
-## Type
+## Charles University on APIs.io
 
-- Index / Consumer / 3rd-Party
+Everything profiled for Charles University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/charles/](https://apis.io/providers/charles/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (17)
 
-Education, Higher Education, University, Research, Open Data, Repository, OAI-PMH, Natural Language Processing, Czechia, Europe
+- [LINDAT Translation Languages API](https://apis.io/apis/charles/charles-languages-api/) — Source and target language operations of the LINDAT Machine Translation API, operated by the Institute of Formal and Applied Linguistics (UFAL) at Charles…
+- [LINDAT Translation Models API](https://apis.io/apis/charles/charles-models-api/) — Translation-model operations of the LINDAT Machine Translation API, operated by UFAL at Charles University. Models are neural MT systems such as CUBBITT,…
+- [LINDAT Translation Root API](https://apis.io/apis/charles/charles-root-api/) — Root navigation resource of the LINDAT Machine Translation API, returning HAL links to the languages and models collections.
+- [LINDAT UDPipe API](https://apis.io/apis/charles/lindat-udpipe/) — Public keyless REST API for tokenization, part-of-speech tagging, lemmatization and dependency parsing of CoNLL-U data, operated by UFAL at Charles…
+- [LINDAT NameTag API](https://apis.io/apis/charles/lindat-nametag/) — Public keyless REST API for named-entity recognition and tokenization (NameTag 3) operated by UFAL at Charles University via LINDAT/CLARIAH-CZ. The OpenAPI…
+- [LINDAT MorphoDiTa API](https://apis.io/apis/charles/lindat-morphodita/) — Public keyless REST API for morphological analysis, morphological generation, part-of-speech tagging and tokenization, principally for Czech, operated by…
+- [LINDAT Korektor API](https://apis.io/apis/charles/lindat-korektor/) — Public keyless REST API for Czech statistical spellchecking, diacritics generation and ranked correction suggestions, operated by UFAL at Charles…
+- [CU Digital Repository OAI-PMH](https://apis.io/apis/charles/digital-repository-oai/) — The Charles University Digital Repository (Digitalni repozitar UK), a DSpace instance running on university-owned infrastructure (dspace.cuni.cz resolves to…
+- [CU Research Publications Repository OAI-PMH](https://apis.io/apis/charles/publications-repository-oai/) — The Charles University Research Publications Repository (Repozitar publikacni cinnosti UK), a DSpace instance on university-owned infrastructure, exposes a…
+- [LINDAT/CLARIAH-CZ Repository OAI-PMH](https://apis.io/apis/charles/lindat-repository-oai/) — OAI-PMH 2.0 endpoint of the LINDAT/CLARIAH-CZ digital library operated by UFAL at Charles University, holding language resources and tools back to 2006. The…
+- [LINDAT/CLARIAH-CZ Repository REST API](https://apis.io/apis/charles/lindat-repository-rest/) — DSpace 7 HAL+JSON REST API of the LINDAT/CLARIAH-CZ digital library, served from UFAL's own host at Charles University. The root discovery document returns…
+- [Charles University Shibboleth Identity Provider](https://apis.io/apis/charles/identity-provider/) — Charles University operates its own Shibboleth SAML 2.0 identity provider. Metadata is served at idp.cuni.cz as application/xml with entityID…
+- [DataCite Registrant — Charles University (CUNI)](https://apis.io/apis/charles/datacite-membership/) — Charles University is a DataCite registrant under provider symbol CUNI, memberType consortium_organization, country CZ, linked to ROR…
+- [Crossref Membership — Charles University](https://apis.io/apis/charles/crossref-membership/) — Charles University holds two Crossref memberships: 5727, "Charles University in Prague, Karolinum Press" (the university press), and 55007, the Institute of…
+- [ROR Registration — Charles University](https://apis.io/apis/charles/ror-registration/) — Charles University is registered in the Research Organization Registry as https://ror.org/024d6js02, located in Czechia. Recorded as a registry membership;…
+- [UKAZ Library Discovery — Ex Libris Primo VE tenancy](https://apis.io/apis/charles/library-discovery-primo/) — UKAZ, the Charles University library discovery service, is an Ex Libris Primo VE tenancy. ukaz.cuni.cz redirects to cuni.primo.exlibrisgroup.com with…
+- [Charles University Figshare — Figshare tenancy](https://apis.io/apis/charles/figshare-repository/) — cuni.figshare.com is a Figshare tenancy for Charles University; DNS resolves it by CNAME to figshare.com. The host answered an AWS WAF bot challenge (HTTP…
 
-## APIs
+### Published properties
 
-- **CU Digital Repository OAI-PMH** — DSpace OAI-PMH 2.0 metadata harvesting for digitized collections. Docs: https://dspace.cuni.cz/
-- **CU Research Publications Repository OAI-PMH** — DSpace OAI-PMH metadata harvesting for self-archived research outputs. Docs: https://publications.cuni.cz/page/about?locale-attribute=en
-- **LINDAT Machine Translation API** — Public neural machine translation REST API (UFAL / LINDAT-CLARIAH-CZ). Docs: https://lindat.mff.cuni.cz/services/translation/docs
-- **LINDAT NameTag API** — Public named-entity recognition / tokenization REST API (UFAL / LINDAT-CLARIAH-CZ). Docs: https://lindat.mff.cuni.cz/services/nametag/api-reference.php
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans / Rate Limits / FinOps
+#### Agentic access (1)
 
-- Plans & Pricing: [plans/charles-plans-pricing.yml](plans/charles-plans-pricing.yml)
-- Rate Limits: [rate-limits/charles-rate-limits.yml](rate-limits/charles-rate-limits.yml)
-- FinOps: [finops/charles-finops.yml](finops/charles-finops.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Timestamps
+- [Charles Agentic Access](https://apis.io/agentic-access/charles/charles-agentic-access/)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+#### JSON Schema (2)
 
-## Common Properties
+The data models the API reads and writes.
 
-- Website: https://www.cuni.cz/UKEN-1.html
-- GitHub: https://github.com/UKUK-Repository-Dept
-- LinkedIn: https://www.linkedin.com/school/univerzita-karlova/
-- Authentication (Shibboleth / eduID.cz SAML): https://uvt.cuni.cz/UVTEN-37.html
+- [LanguageResource](https://apis.io/schemas/charles/charles-language/)
+- [ModelResource](https://apis.io/schemas/charles/charles-model/)
 
-## Notes
+#### JSON Structure (2)
 
-All cataloged endpoints were probed on 2026-06-03 and returned HTTP 200 (the OAI-PMH endpoints returned valid OAI-PMH 2.0 Identify responses); no endpoints were fabricated. The LinkedIn page returns HTTP 999 (LinkedIn anti-bot) but the page exists. Student-facing systems — the Study Information System (SIS), course catalogue, and timetable — and single sign-on are gated behind eduID.cz / Shibboleth (SAML) and expose no documented public API. The DSpace integration tooling on the UKUK-Repository-Dept GitHub org is internal-facing.
+Data models expressed in JSON Structure.
 
-## Maintainers
+- [Charles Language Structure](https://apis.io/json-structure/charles/charles-language-structure/)
+- [Charles Model Structure](https://apis.io/json-structure/charles/charles-model-structure/)
 
-- Kin Lane — kin@apievangelist.com
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Charles Context](https://apis.io/jsonld/charles/charles-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Charles University LINDAT Translation Vocabulary](https://apis.io/vocabularies/charles/charles-vocabulary/)
+
+#### Examples (8)
+
+Example requests and responses.
+
+- [Charles Get Language Collection Example](https://apis.io/examples/charles/charles-get-language-collection-example/)
+- [Charles Get Model Collection Example](https://apis.io/examples/charles/charles-get-model-collection-example/)
+- [Charles Korektor Suggestions Example](https://apis.io/examples/charles/charles-korektor-suggestions-example/)
+- [Charles Morphodita Tag Example](https://apis.io/examples/charles/charles-morphodita-tag-example/)
+- [Charles Nametag Models Example](https://apis.io/examples/charles/charles-nametag-models-example/)
+- [Charles Nametag Recognize Example](https://apis.io/examples/charles/charles-nametag-recognize-example/)
+- [Charles Post Model Item Example](https://apis.io/examples/charles/charles-post-model-item-example/)
+- [Charles Udpipe Process Example](https://apis.io/examples/charles/charles-udpipe-process-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [LINDAT Translation languages API](https://apis.io/collections/charles/open-charles-languages-api/)
+- [LINDAT Translation languages models API](https://apis.io/collections/charles/open-charles-models-api/)
+- [LINDAT Translation languages root API](https://apis.io/collections/charles/open-charles-root-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Charles University — jsonschema rules](https://apis.io/rules/charles/charles-jsonschema-spectral-rules/)
+- [Charles University API Rules](https://apis.io/rules/charles/charles-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Charles Domain Security](https://apis.io/security/charles/charles-domain-security/)
+- [Charles Vulnerability Disclosure](https://apis.io/security/charles/charles-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Charles Plans Pricing](https://apis.io/plans/charles/charles-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Charles Rate Limits](https://apis.io/rate-limits/charles/charles-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Charles Finops](https://apis.io/finops/charles/charles-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.cuni.cz/UKEN-1.html)
+- [Documentation](https://lindat.mff.cuni.cz/en/services)
+- [API reference](https://lindat.mff.cuni.cz/services/udpipe/api-reference.php)
+- [Support](https://lindat.mff.cuni.cz/user_feedback)
+- [Terms of service](https://lindat.mff.cuni.cz/en/terms-of-use)
+- [GitHub](https://github.com/UKUK-Repository-Dept)
+
+## API Evangelist rating
+
+**Kin Score 32.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 82.1 |
+| Contract quality | 48.6 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 15.8 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/charles/](https://apis.io/providers/charles/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Charles University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/charles/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
